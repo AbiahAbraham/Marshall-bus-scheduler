@@ -1,0 +1,46 @@
+/* Add CSS styles for your web site here and use them in index.html. */
+
+/*header style*/ 
+header{
+    text-align: center;
+}
+
+/*h2 style*/
+h2{
+    text-align: center;
+    color:navy
+}
+
+/*navigation menu style*/
+nav{
+    text-align: center;
+    word-spacing: 30px;
+    padding: 10px;
+    color:cadetblue;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+h3{
+    text-align: center;
+    color:navy
+}
+
+/*th= table headers for the columns; td=table data for each bus schedule */
+th,td{
+    padding: 10px;
+    text-align: left;
+    border-color:darkslategray;
+}
+
+th {
+    background-color: cadetblue;
+    color: aliceblue;
+}
+
+div{
+    text-align: center;
+}

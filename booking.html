@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Booking - Marshall Bus Scheduler</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+
+    <body>
+        <!-- Add HTML markup elements for your web site below -->
+        <h2>Booking- Marshall Bus Scheduler</h2>
+        <nav>
+            <a href="schedule.html">schedule</a>
+            <br>
+            <a href="booking.html">booking</a>
+            <br>
+            <a href="routes.html">routes</a>
+            <br>
+            <a href="payment.html">payment</a>
+        </nav>
+
+        <div>
+            <h3>Bus Booking</h3>
+            <form>
+                <label for="bus-number">Select Bus: </label>
+                <select id="bus-number" name="bus-number">
+                    <option value="100">Bus 100</option>
+                    <!-- Add more bus options-->
+                </select>
+                <br>
+                <label for="date">Booking Date: </label>
+                <input type="date" id="date" name="date">
+                <br>
+                <label for="time">Departure Time: </label>
+                <input type="time" id="time" name="time">
+                <br>
+                <button type="submit">Book Now!</button>
+            </form>
+        </div> 
+    </body>
+</html>
