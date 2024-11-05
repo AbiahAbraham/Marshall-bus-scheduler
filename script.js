@@ -75,3 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const paymentForm = document.querySelector("form");
     paymentForm.addEventListener("submit", handlePayment);
 });
+<script>
+    document.getElementById("booking-form").onsubmit = function(event) {
+        event.preventDefault(); // Prevents default form submission
+        window.location.href = "payment.html"; // Redirect to payment page
+    };
+</script>
