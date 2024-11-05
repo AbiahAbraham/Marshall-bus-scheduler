@@ -1,2 +1,2 @@
 # Marshall-bus-scheduler
-#This is a school capstone project
+This is a school capstone project
