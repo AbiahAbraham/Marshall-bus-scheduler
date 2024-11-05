@@ -1,5 +1,4 @@
 // Add JavaScript code for your web site here and call it from index.html.
-// Add JavaScript code for your web site here and call it from index.html.
 // Assuming you have a list of schedules
 const schedules = [
     { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
@@ -75,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const paymentForm = document.querySelector("form");
     paymentForm.addEventListener("submit", handlePayment);
 });
+
 <script>
     document.getElementById("booking-form").onsubmit = function(event) {
         event.preventDefault(); // Prevents default form submission
