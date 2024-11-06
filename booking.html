@@ -13,13 +13,15 @@
         <!-- Add HTML markup elements for your web site below -->
         <h2>Booking- Marshall Bus Scheduler</h2>
         <nav>
-            <a href="schedule.html">schedule</a>
+            <a href="index.html">Home</a>
             <br>
-            <a href="booking.html">booking</a>
+            <a href="schedule.html">Schedule</a>
             <br>
-            <a href="routes.html">routes</a>
+            <a href="booking.html">Booking</a>
             <br>
-            <a href="payment.html">payment</a>
+            <a href="routes.html">Routes</a>
+            <br>
+            <a href="payment.html">Payment</a>
         </nav>
 
         <div class="container">
@@ -27,7 +29,7 @@
             <form action="payment.html" method="get">
                 <label for="bus-number">Select Bus: </label>
                 <select id="bus-number" name="bus-number">
-                    <option value="100">Bus 100</option>
+                    <option value="Dial">Dial-a-Ride</option>
                     <!-- Add more bus options-->
                 </select>
                 <br>
@@ -35,7 +37,69 @@
                 <input type="date" id="date" name="date">
                 <br>
                 <label for="time">Departure Time: </label>
-                <input type="time" id="time" name="time" min="06:00" max="18:00">
+                <input type="time" id="time" name="time" min="05:45" max="21:00">
+                <br>
+                <label for="adult_passengers">Number of Adults: </label>
+                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1" ></input>
+                <br>
+                <label for="children_passengers">Number of Children (3-12 years old): </label>
+                <input type="number" id="children_passengers" name="children_passengers" min="0" step="1" ></input>
+                <br>
+                <label for="p_location">Location of Pickup</label>
+                <select id="p_location" name="p_location">
+                    <option value="" disabled selected>Choose Location</option>
+                    <option value="YMCA">YMCA</option>
+                    <option value="CityHall">City Hall</option>
+                    <option value="Courthouse">Courthouse</option>
+                    <option value="LyonApt">Lyon County Apartments</option>
+                    <option value="RiverviewCrt">Riverview Court Apartments</option>
+                    <option value="ParkviewApt">Parkview Apartments</option>
+                    <option value="4thLyon">N 4th & Lyon Street</option>
+                    <option value="N4th">N 4th Street</option>
+                    <option value="VillageDr">Village Drive</option>
+                    <option value="WindsongApt">Windsong Apartments</option>
+                    <option value="BirchwoodApt">Birchwood Apartments</option>
+                    <option value="SMSUApt">SMSU Apartments</option>
+                    <option value="SMSUCC">SMSU Conference Center</option>
+                    <option value="PetersonSt">Peterson Street</option>
+                    <option value="RiverwindsApt">Riverwinds Apartments</option>
+                    <option value="MarshallSqApt">Marshall Square Apartments</option>
+                    <option value="SusanDr">Susan Drive</option>
+                    <option value="Walmart">Wal-Mart</option>
+                    <option value="Hyvee">Hyvee</option>
+                    <option value="DogwoodSt">Dogwood Street</option>
+                    <option value="CitySideApt">City Side Apartments</option>
+                    <option value="FreedomPark">Freedom Park</option>
+                    <option value="CountyFair">County Fair</option>
+                </select>
+                <br>
+                <label for="d_location">Location of Dropoff</label>
+                <select id="d_location" name="s_location">
+                    <option value="" disabled selected>Choose Location</option>
+                    <option value="YMCA">YMCA</option>
+                    <option value="CityHall">City Hall</option>
+                    <option value="Courthouse">Courthouse</option>
+                    <option value="LyonApt">Lyon County Apartments</option>
+                    <option value="RiverviewCrt">Riverview Court Apartments</option>
+                    <option value="ParkviewApt">Parkview Apartments</option>
+                    <option value="4thLyon">N 4th & Lyon Street</option>
+                    <option value="N4th">N 4th Street</option>
+                    <option value="VillageDr">Village Drive</option>
+                    <option value="WindsongApt">Windsong Apartments</option>
+                    <option value="BirchwoodApt">Birchwood Apartments</option>
+                    <option value="SMSUApt">SMSU Apartments</option>
+                    <option value="SMSUCC">SMSU Conference Center</option>
+                    <option value="PetersonSt">Peterson Street</option>
+                    <option value="RiverwindsApt">Riverwinds Apartments</option>
+                    <option value="MarshallSqApt">Marshall Square Apartments</option>
+                    <option value="SusanDr">Susan Drive</option>
+                    <option value="Walmart">Wal-Mart</option>
+                    <option value="Hyvee">Hyvee</option>
+                    <option value="DogwoodSt">Dogwood Street</option>
+                    <option value="CitySideApt">City Side Apartments</option>
+                    <option value="FreedomPark">Freedom Park</option>
+                    <option value="CountyFair">County Fair</option>
+                </select>
                 <br>
                 <button type="submit">Pay Now!</button>
             </form>
