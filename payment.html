@@ -12,6 +12,8 @@
         <!-- Add HTML markup elements for your web site below -->
         <h2>Payment- Marshall Bus Scheduler</h2>
         <nav>
+            <a href="index.html">Home</a>
+            <br>
             <a href="schedule.html">Schedule</a>
             <br>
             <a href="booking.html">Booking</a>
@@ -26,15 +28,17 @@
             <form> 
                 <label for="amount">Amount: $ </label>
                 <input type="number" id="amount" name="amount" placeholder="Enter amount">
+                <!-- add javascript for set payment amount-->
                 <br>
                 <label for="card">Card Number: </label>
-                <input type="number" id="card" name="card" placeholder="1234 5678 9012 3456">
+                <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" pattern="\d{16}" maxlength="16" required>
                 <br>
                 <label for="expiration">Expiration Date: </label>
-                <input type="month" id="expiration" name="expiration">
+                <input type="month" id="expiration" name="expiration" required> 
+                <!-- add javascript so it can't be after today's date-->
                 <br>
                 <label for="cvv">Card Security Number: </label>
-                <input type="number" id="CVV" name="CVV" placeholder="123">
+                <input type="text" id="CVV" name="CVV" placeholder="123" pattern="\d{3,4}" minlength="3" maxlength="4">
                 <br>
                 <button type="submit">Submit</button>
             </form>
