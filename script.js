@@ -61,8 +61,21 @@ function handlePayment(event) {
     const expiration = document.getElementById("expiration").value;
     const cvv = document.getElementById("CVV").value;
 
+    // Check if all fields are filled
     if (!amount || !cardNumber || !expiration || !cvv) {
         alert("Please fill in all payment details.");
+        return;
+    }
+
+    // Check if expiration date is today's date
+    const today = new Date();
+    const [expYear, expMonth] = expiration.split("-");
+    const expDate = new Date(expYear, expMonth - 1); // Month is zero-based in JavaScript
+
+    if (expDate.getFullYear() === today.getFullYear() && expDate.getMonth() === today.getMonth()) {
+        const expirationField = document.getElementById("expiration");
+        expirationField.style.border = "2px solid red";
+        alert("The expiration date cannot be the current month. Please enter a valid date.");
         return;
     }
 
@@ -74,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const paymentForm = document.querySelector("form");
     paymentForm.addEventListener("submit", handlePayment);
 });
+
 
 <script>
     document.getElementById("booking-form").onsubmit = function(event) {
