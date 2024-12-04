@@ -1,25 +1,30 @@
+/* Base styling for body */
 body {
     font-family: Arial, sans-serif;
     color: #333;
-    background-color: #f8f8f8;
+    background-color: #f0f8ff;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-/* Centered header and section headers */
-header, h2, h3 {
+/* Header and page title */
+h2 {
     text-align: center;
-    color: darkslategray;
+    color: #1e4d4e;
+    margin-top: 20px;
+    font-size: 2em;
 }
 
-/* Navigation menu style */
+/* Navigation menu */
 nav {
     display: flex;
     justify-content: center;
     background-color: #1e4d4e;
     padding: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
     max-width: 90%;
 }
 
@@ -27,58 +32,47 @@ nav a {
     margin: 0 15px;
     color: white;
     font-weight: bold;
+    font-size: 1.2em;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 nav a:hover {
     color: lightgray;
+    transform: scale(1.1);
 }
 
-/* Container for main content sections */
+/* Content container */
 .container {
-    display: flex;
-    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    margin: 0 auto;
-    max-width: 90%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 70%;
 }
 
-/* Table styling */
-table {
-    width: 80%;
-    margin: auto;
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+/* Text styles */
+.container h3 {
+    text-align: center;
+    color: #1e4d4e;
+    font-size: 1.8em;
+    margin-bottom: 15px;
 }
 
-/* Table headers and rows */
-th, td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid darkslategray;
+.container h4, 
+.container h5, 
+.container h6 {
+    color: #333;
+    margin-top: 15px;
+    font-size: 1.2em;
 }
 
-th {
-    background-color: #1e4d4e;
-    color: aliceblue;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Form field styling */
-input, select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+.container p {
+    color: #555;
+    font-size: 1em;
     margin-bottom: 10px;
+    text-align: justify;
 }
 
 /* Button styling */
@@ -87,24 +81,34 @@ button {
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: navy;
+    transform: scale(1.05);
 }
 
-/* Container styling for consistent spacing and layout */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+
+    .container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
 }
