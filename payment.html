@@ -21,32 +21,44 @@
             <a href="routes.html">Routes</a>
         </nav>
 
-        <div class="container">
+      <div class="container">
     <h3>Make a Payment</h3>
     <form id="paymentForm">
-        <div class="form-group">
-            <label for="amount">Amount: $ </label>
-            <input type="number" id="amount" name="amount" placeholder="Enter amount">
-            <small class="error-message" id="amountError"></small>
-        </div>
+        <!-- Number of Adults -->
+        <label for="adults">Number of Adults: </label>
+        <input type="number" id="adults" name="adults" min="0" placeholder="Enter number of adults" required>
+        <br>
 
-        <div class="form-group">
-            <label for="card">Card Number: </label>
-            <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" maxlength="16" required>
-            <small class="error-message" id="cardError"></small>
-        </div>
+        <!-- Number of Children -->
+        <label for="children">Number of Children (Aged 3–12): </label>
+        <input type="number" id="children" name="children" min="0" placeholder="Enter number of children" required>
+        <br>
 
-        <div class="form-group">
-            <label for="expiration">Expiration Date: </label>
-            <input type="month" id="expiration" name="expiration" required>
-            <small class="error-message" id="expirationError"></small>
-        </div>
+        <!-- Time of Booking -->
+        <label for="time">Booking Time: </label>
+        <input type="time" id="time" name="time" required>
+        <br>
 
-        <div class="form-group">
-            <label for="cvv">Card Security Number: </label>
-            <input type="text" id="CVV" name="CVV" placeholder="123" maxlength="4" required>
-            <small class="error-message" id="cvvError"></small>
-        </div>
+        <!-- Total Amount (Calculated Automatically) -->
+        <label for="totalAmount">Total Amount: $</label>
+        <input type="number" id="totalAmount" name="totalAmount" readonly>
+        <br>
+
+        <!-- Card Information -->
+        <label for="card">Card Number: </label>
+        <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" maxlength="16" required>
+        <br>
+        <label for="expiration">Expiration Date: </label>
+        <input type="month" id="expiration" name="expiration" required>
+        <br>
+        <label for="cvv">Card Security Number: </label>
+        <input type="text" id="CVV" name="CVV" placeholder="123" maxlength="4" required>
+        <br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+</div>
 
         <button type="submit">Submit</button>
     </form>
