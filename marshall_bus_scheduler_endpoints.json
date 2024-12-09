@@ -1,0 +1,60 @@
+
+[
+  {
+    "endpoint": "/api/schedules",
+    "method": "GET",
+    "description": "Fetch all bus schedules",
+    "response": [
+      {
+        "bus_id": 1,
+        "route": "A to B",
+        "departure_time": "08:00",
+        "arrival_time": "10:00"
+      },
+      {
+        "bus_id": 2,
+        "route": "B to C",
+        "departure_time": "09:00",
+        "arrival_time": "11:00"
+      }
+    ]
+  },
+  {
+    "endpoint": "/api/bookings",
+    "method": "POST",
+    "description": "Submit a new booking",
+    "request": {
+      "user_id": 123,
+      "bus_id": 1,
+      "pickup_location": "YMCA",
+      "dropoff_location": "City Hall",
+      "date": "2024-12-05",
+      "time": "08:00",
+      "adult_passengers": 2,
+      "child_passengers": 1
+    },
+    "response": {
+      "success": true,
+      "reservation_id": 456,
+      "message": "Booking confirmed!"
+    }
+  },
+  {
+    "endpoint": "/api/payments",
+    "method": "POST",
+    "description": "Process a payment for a reservation",
+    "request": {
+      "user_id": 123,
+      "reservation_id": 456,
+      "card_number": "1234567890123456",
+      "expiration": "2024-12",
+      "cvv": "123",
+      "amount": 25.50
+    },
+    "response": {
+      "success": true,
+      "payment_id": 789,
+      "message": "Payment successful!"
+    }
+  }
+]
