@@ -7,9 +7,40 @@ body {
 }
 
 /* Centered header and section headers */
-header, h2, h3 {
+header{
     text-align: center;
     color: darkslategray;
+    font-size: larger;
+}
+
+h2{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h3{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h4{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h5{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h6{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
 }
 
 /* Navigation menu style */
