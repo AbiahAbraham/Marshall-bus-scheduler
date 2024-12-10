@@ -1,5 +1,4 @@
-// Add JavaScript code for your web site here and call it from index.html.
-// Assuming you have a list of schedules
+
 const schedules = [
     { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
     { busNumber: '102', route: 'B to C', departure: '09:00', arrival: '11:00' },
