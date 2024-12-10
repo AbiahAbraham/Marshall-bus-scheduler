@@ -1,96 +1,150 @@
-
-const schedules = [
-    { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
-    { busNumber: '102', route: 'B to C', departure: '09:00', arrival: '11:00' },
-    // Add more schedules
-];
-
-function displaySchedule() {
-    const tableBody = document.querySelector("#scheduleTable tbody");
-    schedules.forEach(schedule => {
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${schedule.busNumber}</td><td>${schedule.route}</td><td>${schedule.departure}</td><td>${schedule.arrival}</td>`;
-        tableBody.appendChild(row);
-    });
-}
-
-// Call the function when the page loads
-document.addEventListener("DOMContentLoaded", displaySchedule);
-
-
-function handleBooking(event) {
-    event.preventDefault();
-    
-    const cardNumber = document.getElementById("card").value;
-    const cvv = document.getElementById("cvv").value;
-    const time = document.getElementById("time").value;
-
-    if (!cardNumber || !cvv || !time) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    alert(`Booking confirmed for Dial-a-Ride.`);
-}
-
-// Add event listener for the booking form
 document.addEventListener("DOMContentLoaded", () => {
-    const bookingForm = document.querySelector("form");
-    bookingForm.addEventListener("submit", handleBooking);
-});
+    // Schedules Display Logic
+    const schedules = [
+        { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
+        { busNumber: '102', route: 'B to C', departure: '09:00', arrival: '11:00' },
+        // Add more schedules
+    ];
 
-const routes = ["Route A", "Route B", "Route C"];
-
-function displayRoutes() {
-    const routeList = document.getElementById("routeList");
-    routes.forEach(route => {
-        const listItem = document.createElement("li");
-        listItem.textContent = route;
-        routeList.appendChild(listItem);
-    });
-}
-
-// Call the function when the page loads
-document.addEventListener("DOMContentLoaded", displayRoutes);
-function handlePayment(event) {
-    event.preventDefault();
-
-    const amount = document.getElementById("amount").value;
-    const cardNumber = document.getElementById("card").value;
-    const expiration = document.getElementById("expiration").value;
-    const cvv = document.getElementById("CVV").value;
-
-    // Check if all fields are filled
-    if (!amount || !cardNumber || !expiration || !cvv) {
-        alert("Please fill in all payment details.");
-        return;
-    }
-
-    // Check if expiration date is today's date
-    const today = new Date();
-    const [expYear, expMonth] = expiration.split("-");
-    const expDate = new Date(expYear, expMonth - 1); // Month is zero-based in JavaScript
-
-    if (expDate.getFullYear() === today.getFullYear() && expDate.getMonth() === today.getMonth()) {
-        const expirationField = document.getElementById("expiration");
-        expirationField.style.border = "2px solid red";
-        alert("The expiration date cannot be the current month. Please enter a valid date.");
-        return;
-    }
-
-    alert("Payment Successful!");
-}
-
-// Add event listener for the payment form
-document.addEventListener("DOMContentLoaded", () => {
-    const paymentForm = document.querySelector("form");
-    paymentForm.addEventListener("submit", handlePayment);
-});
-
-
-<script>
-    document.getElementById("booking-form").onsubmit = function(event) {
-        event.preventDefault(); // Prevents default form submission
-        window.location.href = "payment.html"; // Redirect to payment page
+    const displaySchedule = () => {
+        const tableBody = document.querySelector("#scheduleTable tbody");
+        if (tableBody) {
+            schedules.forEach(schedule => {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${schedule.busNumber}</td><td>${schedule.route}</td><td>${schedule.departure}</td><td>${schedule.arrival}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
     };
-</script>
+    displaySchedule();
+
+    // Booking Form Logic
+    const bookingForm = document.getElementById("booking-form");
+    if (bookingForm) {
+        bookingForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const busNumber = document.getElementById("bus-number").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            if (!busNumber || !date || !time) {
+                alert("Please fill in all fields.");
+                return;
+            }
+
+            alert(`Booking confirmed for Bus ${busNumber} on ${date} at ${time}.`);
+            window.location.href = "payment.html";
+        });
+    }
+
+    // Routes Display Logic
+    const routes = ["Route A", "Route B", "Route C"];
+    const displayRoutes = () => {
+        const routeList = document.getElementById("routeList");
+        if (routeList) {
+            routes.forEach(route => {
+                const listItem = document.createElement("li");
+                listItem.textContent = route;
+                routeList.appendChild(listItem);
+            });
+        }
+    };
+    displayRoutes();
+
+    // Payment Form Logic
+    const paymentForm = document.getElementById("paymentForm");
+    if (paymentForm) {
+        const adultsInput = document.getElementById("adults");
+        const childrenInput = document.getElementById("children");
+        const totalAmountInput = document.getElementById("totalAmount");
+        const cardInput = document.getElementById("card");
+        const cardTypeDisplay = document.getElementById("cardType"); // Add a span or div for card type
+        const expirationInput = document.getElementById("expiration");
+        const cvvInput = document.getElementById("CVV");
+
+        const baseAdultCost = 2.5;
+        const childCost = 1.0;
+
+        const updateTotalAmount = () => {
+            const adults = parseInt(adultsInput.value) || 0;
+            const children = parseInt(childrenInput.value) || 0;
+            const totalCost = (adults * baseAdultCost) + (children * childCost);
+            totalAmountInput.value = totalCost.toFixed(2);
+        };
+
+        const detectCardType = (cardNumber) => {
+            if (/^4/.test(cardNumber)) return "Visa";
+            if (/^5[1-5]/.test(cardNumber)) return "MasterCard";
+            if (/^3[47]/.test(cardNumber)) return "American Express";
+            if (/^6(?:011|5)/.test(cardNumber)) return "Discover";
+            return "Unknown Card Type";
+        };
+
+        cardInput.addEventListener("input", () => {
+            // Remove non-numeric characters
+            let cardNumber = cardInput.value.replace(/\D/g, ""); // Only digits
+        
+            // Limit to 16 digits
+            if (cardNumber.length > 16) cardNumber = cardNumber.slice(0, 16);
+        
+            // Format the card number with spaces (e.g., 1234 5678 9012 3456)
+            cardInput.value = cardNumber.replace(/(\d{4})(?=\d)/g, "$1 ");
+        
+            // Detect card type and display it
+            const cardType = detectCardType(cardNumber);
+            cardTypeDisplay.textContent = cardType;
+        });
+        
+        
+        // Validate payment details
+        const validatePaymentDetails = () => {
+            let isValid = true;
+
+            // Reset styles
+            cardInput.style.border = "";
+            expirationInput.style.border = "";
+            cvvInput.style.border = "";
+
+            const rawCardNumber = cardInput.value.replace(/\s+/g, "");
+            if (!/^\d{16}$/.test(rawCardNumber)) {
+                isValid = false;
+                cardInput.style.border = "2px solid red";
+            }
+
+            const today = new Date();
+            const [expYear, expMonth] = expirationInput.value.split("-");
+            const expDate = new Date(expYear, expMonth - 1);
+            if (isNaN(expDate.getTime()) || expDate < today) {
+                isValid = false;
+                expirationInput.style.border = "2px solid red";
+            }
+
+            if (!/^\d{3}$/.test(cvvInput.value)) {
+                isValid = false;
+                cvvInput.style.border = "2px solid red";
+            }
+
+            return isValid;
+        };
+
+        paymentForm.addEventListener("input", updateTotalAmount);
+        paymentForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (!validatePaymentDetails()) {
+                alert("Please correct the highlighted fields.");
+                return;
+            }
+
+            const totalAmount = parseFloat(totalAmountInput.value);
+            if (totalAmount === 0) {
+                alert("Please select at least one person.");
+                return;
+            }
+
+            alert(`Payment Successful! Total Amount: $${totalAmount}`);
+        });
+
+        updateTotalAmount();
+    }
+});
