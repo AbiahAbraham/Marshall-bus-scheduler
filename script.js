@@ -31,7 +31,7 @@ function handleBooking(event) {
         return;
     }
 
-    alert(`Booking confirmed for Bus ${busNumber} on ${date} at ${time}.`);
+    alert(`Booking confirmed for Dial-a-Ride.`);
 }
 
 // Add event listener for the booking form
