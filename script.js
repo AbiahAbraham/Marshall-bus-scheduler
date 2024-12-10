@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded", displaySchedule);
 function handleBooking(event) {
     event.preventDefault();
     
-    const busNumber = document.getElementById("bus-number").value;
-    const date = document.getElementById("date").value;
+    const cardNumber = document.getElementById("card").value;
+    const cvv = document.getElementById("cvv").value;
     const time = document.getElementById("time").value;
 
-    if (!busNumber || !date || !time) {
+    if (!cardNumber || !cvv || !time) {
         alert("Please fill in all fields.");
         return;
     }
