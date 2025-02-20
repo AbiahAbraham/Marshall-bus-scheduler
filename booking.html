@@ -20,6 +20,8 @@
             <a href="booking.html">Booking</a>
             <br>
             <a href="routes.html">Routes</a>
+            <br>
+            <a href="login.html">Login</a>
         </nav>
 
         <div class="container">
@@ -36,6 +38,15 @@
                 <br>
                 <label for="date">Booking Date: </label>
                 <input type="date" id="date" name="date">
+                <br>
+                <label for="time">Departure Time: </label>
+                <input type="time" id="time" name="time" min="05:45" max="21:00">
+                <br>
+                <label for="adult_passengers">Number of Adults: </label>
+                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1" ></input>
+                <br>
+                <label for="children_passengers">Number of Children (3-12 years old): </label>
+                <input type="number" id="children_passengers" name="children_passengers" min="0" step="1" ></input>
                 <br>
                 <label for="p_location">Location of Pickup</label>
                 <select id="p_location" name="p_location">
@@ -58,7 +69,7 @@
                     <option value="MarshallSqApt">Marshall Square Apartments</option>
                     <option value="SusanDr">Susan Drive</option>
                     <option value="Walmart">Wal-Mart</option>
-                    <option value="Hyvee">Hyvee</option>
+                    <option value="Hyvee">Hy-Vee</option>
                     <option value="DogwoodSt">Dogwood Street</option>
                     <option value="CitySideApt">City Side Apartments</option>
                     <option value="FreedomPark">Freedom Park</option>
