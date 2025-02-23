@@ -148,3 +148,45 @@ document.addEventListener("DOMContentLoaded", () => {
         updateTotalAmount();
     }
 });
+// Handle Create Account link click
+document.getElementById('createAccountLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior
+    
+    // Redirect to the account creation page
+    window.location.href = 'create_account.html'; // Adjust this URL to match your actual sign-up page
+});
+
+// Handle Forgot Password link click
+document.getElementById('forgotPasswordLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior
+    
+    // Ask the user for their email to reset the password
+    let email = prompt("Please enter your email address to reset your password:");
+
+    // Simple validation (you can add more robust checks here)
+    if (email) {
+        alert("If an account with that email exists, we'll send you a reset link.");
+        
+        // Optionally, send a request to a server to handle the password reset logic (e.g., using AJAX or fetch)
+        // For now, simulate with a simple message
+    } else {
+        alert("Please enter a valid email address.");
+    }
+});
+
+// Form submission handler (for actual login)
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Fetch the entered username and password (You can replace this with actual validation logic)
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // Simple form validation (ensure fields are not empty)
+    if (username && password) {
+        alert("Login successful for " + username); // Placeholder for actual login logic
+    } else {
+        alert("Please fill in both fields.");
+    }
+});
+
