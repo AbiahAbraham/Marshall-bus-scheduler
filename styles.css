@@ -1,53 +1,24 @@
 /* Base styling for body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
-    background-color: #f8f8f8;
-    line-height: 1.6;
+    background: linear-gradient(135deg, #f8f8f8, #e0e0e0); /* Subtle background gradient */
+    line-height: 1.8;  /* Slightly larger line-height for better readability */
 }
 
 /* Centered header and section headers */
-header{
+header, h2, h3, h4, h5, h6 {
     text-align: center;
     color: darkslategray;
     font-size: larger;
-}
-
-h2{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
-}
-
-h3{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
-}
-
-h4{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
-}
-
-h5{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
-}
-
-h6{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
+    font-weight: 600; /* Use heavier weight for better emphasis */
 }
 
 /* Navigation menu style */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #1e4d4e;
+    background: linear-gradient(45deg, #1e4d4e, #2c7b7a); /* Gradient background */
     padding: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -60,49 +31,53 @@ nav a {
     color: white;
     font-weight: bold;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.2s ease; /* Added transition effect */
 }
 
 nav a:hover {
     color: lightgray;
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* Container for main content sections */
 .container {
     display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 90%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 30px; /* Increased padding */
+    background-color: #ffffff;
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1); /* Stronger shadow for depth */
 }
 
 /* Table styling */
 table {
-    width: 80%;
-    margin: auto;
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Slightly wider table */
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Add spacing between rows */
 }
 
-/* Table headers and rows */
 th, td {
-    padding: 10px;
+    padding: 12px 15px; /* More padding for better readability */
     text-align: left;
     border: 1px solid darkslategray;
 }
 
 th {
     background-color: #1e4d4e;
-    color: aliceblue;
+    color: white;
+    text-transform: uppercase; /* Use uppercase for better hierarchy */
+}
+
+table tr:nth-child(odd) {
+    background-color: #f1f1f1; /* Light alternating rows */
 }
 
 table tr:hover {
-    background-color: #f1f1f1;
+    background-color: #ddd; /* Slightly darker hover effect */
 }
 
 /* Form field styling */
@@ -113,32 +88,42 @@ input, select {
     margin-bottom: 10px;
 }
 
+input:focus, select:focus {
+    border-color: #1e4d4e;
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 77, 78, 0.5);
+}
+
 /* Button styling */
 button {
     background-color: #1e4d4e;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;  /* Slightly more rounded */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transition effect */
 }
 
 button:hover {
-    background-color: navy;
+    background-color: #2c7b7a; /* Lighter shade on hover */
+    transform: translateY(-2px); /* Subtle movement for interactivity */
 }
 
-/* Container styling for consistent spacing and layout */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(30, 77, 78, 0.5);
 }
 
-/* Additional styles here (from the previous CSS update) */
+/* Additional styling for spacing and mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
