@@ -3,51 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Marshall Bus Scheduler</title>
+    <title>Login - Marshall Bus Scheduler</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h2>Payment - Marshall Bus Scheduler</h2>
-    </header>
+    <h2>Login - Marshall Bus Scheduler</h2>
 
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="booking.html">Booking</a></li>
-            <li><a href="routes.html">Routes</a></li>
-            <li><a href="login.html">Login</a></li>
-        </ul>
+        <a href="index.html">Home</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="booking.html">Booking</a>
+        <a href="routes.html">Routes</a>
+        <a href="login.html">Login</a>
     </nav>
 
-    <section class="form-container">
-        <form action="" method="POST">
-            <div class="form-group">
-                <label for="first">Username:</label>
-                <input type="text" id="first" name="first" placeholder="Enter your Username" required>
-            </div>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
 
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-            </div>
+        <div class="wrap">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
 
-            <div class="form-group">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember me</label>
-            </div>
+    <p>Not registered?
+        <a href="#" id="createAccountLink">Create an account</a>
+    </p>
 
-            <div class="form-group">
-                <button type="submit">Proceed to Payment</button>
-            </div>
-        </form>
-
-        <p>Not registered? <a href="register.html" style="text-decoration: none;">Create an account</a></p>
-        <p><a href="forgot-password.html" style="text-decoration: none;">Forgot Password?</a></p>
-    </section>
+    <p>Forgot your password?
+        <a href="#" id="forgotPasswordLink">Reset it</a>
+    </p>
 
 </body>
 </html>
