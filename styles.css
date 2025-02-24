@@ -1,4 +1,4 @@
-/* Base styling for body */
+/* Enhanced Typography */
 body {
     font-family: 'Roboto', Arial, sans-serif;
     color: #333;
@@ -6,7 +6,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    transition: background-color 0.3s ease;
 }
 
 /* Global settings for the page */
@@ -17,16 +17,18 @@ body {
 header, h2, h3, h4, h5, h6 {
     text-align: center;
     color: #2f3b3b;
-    font-size: 1.75rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Slight spacing between letters for a more dynamic header */
 }
 
 /* Navigation menu style */
 nav {
     display: flex;
     justify-content: center;
-    background: #2c7b7a;
+    background: linear-gradient(135deg, #2c7b7a, #4a9a97); /* Gradient background */
     padding: 15px 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 15px 15px;
@@ -34,7 +36,11 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease; /* Smooth background color change on scroll */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
 }
 
 nav ul {
@@ -61,7 +67,8 @@ nav a {
 nav a:hover {
     background-color: #1e4d4e;
     transform: translateY(-2px);
-    padding: 12px 22px; /* Slightly increase padding on hover for emphasis */
+    padding: 12px 22px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Main content container styling */
@@ -75,11 +82,21 @@ nav a:hover {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease; /* Smooth box-shadow transition */
+    transition: box-shadow 0.3s ease;
 }
 
 .container:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2); /* Hover effect on container */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle animation to the table rows */
+table tr {
+    transition: transform 0.2s ease;
+}
+
+table tr:hover {
+    transform: scale(1.02); /* Slight zoom effect on row hover */
+    background-color: #f1f1f1;
 }
 
 /* Table styling */
@@ -88,7 +105,7 @@ table {
     margin: 30px auto;
     border-collapse: separate;
     border-spacing: 0 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Soft shadow under table */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 th, td {
@@ -120,13 +137,14 @@ input, select {
     margin-bottom: 20px;
     width: 100%;
     font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 input:focus, select:focus {
     border-color: #2c7b7a;
     outline: none;
     box-shadow: 0 0 5px rgba(44, 123, 122, 0.5);
+    background-color: #f8f8f8; /* Light background color when focused */
 }
 
 /* Button styling */
@@ -144,7 +162,7 @@ button {
 button:hover {
     background-color: #1e4d4e;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(44, 123, 122, 0.3); /* Add shadow to button on hover */
+    box-shadow: 0 5px 15px rgba(44, 123, 122, 0.3);
 }
 
 button:focus {
@@ -162,48 +180,14 @@ a {
 
 a:hover {
     color: #1e4d4e;
-    text-decoration: underline; /* Add underline effect on hover */
-}
-
-/* Additional styling for mobile responsiveness */
-@media screen and (max-width: 768px) {
-    .container {
-        max-width: 90%;
-        padding: 20px;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav li {
-        margin: 10px 0;
-    }
-
-    table {
-        font-size: 0.9rem; /* Adjust table font size for smaller screens */
-    }
-
-    button {
-        width: 100%; /* Full width button on smaller screens */
-    }
-
-    input, select {
-        width: 100%; /* Ensure inputs and selects are full width on mobile */
-    }
-}
-
-/* Smooth scroll effect */
-html {
-    scroll-behavior: smooth;
+    text-decoration: underline;
 }
 
 /* Footer styling */
 footer {
     background-color: #2c7b7a;
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     position: relative;
     bottom: 0;
@@ -235,4 +219,77 @@ footer a:hover {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Box Shadows to Elements */
+input, button, select {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+input:focus, button:hover, select:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2c7b7a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1e4d4e;
+}
+
+/* Card-style components */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03); /* Card hover zoom effect */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Multi-column layout */
+.columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.columns .column {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Back-to-top button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #2c7b7a;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#back-to-top:hover {
+    background-color: #1e4d4e;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
