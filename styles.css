@@ -1,128 +1,105 @@
-/* Enhanced Typography */
+/* Base styling for body */
 body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     color: #333;
-    background-color: #f5f5f5;
+    background-color: #f8f8f8;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    transition: background-color 0.3s ease;
 }
 
-/* Global settings for the page */
-* {
-    box-sizing: border-box;
-}
-
-header, h2, h3, h4, h5, h6 {
+/* Centered header and section headers */
+header{
     text-align: center;
-    color: #2f3b3b;
-    font-size: 2rem;
-    font-weight: 700;
-    margin: 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px; /* Slight spacing between letters for a more dynamic header */
+    color: darkslategray;
+    font-size: larger;
+}
+
+h2{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h3{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h4{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h5{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
+}
+
+h6{
+    text-align: center;
+    color: darkslategray;
+    font-size: large;
 }
 
 /* Navigation menu style */
 nav {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    background: linear-gradient(135deg, #2c7b7a, #4a9a97); /* Gradient background */
-    padding: 15px 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 15px 15px;
-    margin-bottom: 30px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-nav:hover {
-    transform: scale(1.02); /* Slight zoom effect on hover */
-}
-
-nav ul {
-    list-style-type: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-}
-
-nav li {
-    margin: 0 15px;
+    background-color: #1e4d4e;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10px auto;
+    max-width: 90%;
 }
 
 nav a {
+    margin: 0 15px;
     color: white;
     font-weight: bold;
     text-decoration: none;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease, padding 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #1e4d4e;
-    transform: translateY(-2px);
-    padding: 12px 22px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    color: lightgray;
 }
 
-/* Main content container styling */
+/* Container for main content sections */
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 70%;
-    margin: 40px auto;
-    padding: 40px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.container:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-}
-
-/* Add subtle animation to the table rows */
-table tr {
-    transition: transform 0.2s ease;
-}
-
-table tr:hover {
-    transform: scale(1.02); /* Slight zoom effect on row hover */
-    background-color: #f1f1f1;
+    justify-content: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 /* Table styling */
 table {
-    width: 100%;
-    margin: 30px auto;
-    border-collapse: separate;
-    border-spacing: 0 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    width: 80%;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
-    padding: 14px 18px;
+/* Table headers and rows */
+th, td{
+    padding: 10px;
     text-align: left;
-    border: 1px solid #ddd;
+    border: 1px solid darkslategray;
 }
 
 th {
-    background-color: #2c7b7a;
-    color: white;
-    text-transform: uppercase;
-    font-size: 1rem;
-}
-
-table tr:nth-child(odd) {
-    background-color: #f9f9f9;
+    background-color: #1e4d4e;
+    color: aliceblue;
 }
 
 table tr:hover {
@@ -131,165 +108,48 @@ table tr:hover {
 
 /* Form field styling */
 input, select {
-    padding: 12px 15px;
+    padding: 8px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin-bottom: 20px;
-    width: 100%;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-input:focus, select:focus {
-    border-color: #2c7b7a;
-    outline: none;
-    box-shadow: 0 0 5px rgba(44, 123, 122, 0.5);
-    background-color: #f8f8f8; /* Light background color when focused */
+    margin-bottom: 10px;
 }
 
 /* Button styling */
 button {
-    background-color: #2c7b7a;
+    background-color: #1e4d4e;
     color: white;
-    padding: 14px 28px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #1e4d4e;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(44, 123, 122, 0.3);
+    background-color: navy;
 }
 
-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(44, 123, 122, 0.5);
-}
-
-/* Link styling */
-a {
-    color: #2c7b7a;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, text-decoration 0.2s ease;
-}
-
-a:hover {
-    color: #1e4d4e;
-    text-decoration: underline;
-}
-
-/* Footer styling */
-footer {
-    background-color: #2c7b7a;
-    color: white;
-    padding: 30px;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
-}
-
-footer a {
-    color: white;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #f1f1f1;
-}
-
-/* Animated loading spinner */
-.spinner {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #2c7b7a;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: auto;
-    display: block;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Box Shadows to Elements */
-input, button, select {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s ease-in-out;
-}
-
-input:focus, button:hover, select:focus {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #2c7b7a;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #1e4d4e;
-}
-
-/* Card-style components */
-.card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: scale(1.03); /* Card hover zoom effect */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Multi-column layout */
-.columns {
+/* Container styling for consistent spacing and layout */
+.container {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.columns .column {
-    flex: 1;
-    min-width: 300px;
-}
-
-/* Back-to-top button */
-#back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #2c7b7a;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#back-to-top:hover {
+.create_account_button {
     background-color: #1e4d4e;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+/* Additional styles here (from the previous CSS update) */
