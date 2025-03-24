@@ -20,3 +20,15 @@ app.get('/login', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+// Forgot & reset password
+app.post("/api/requestReset", (req, res) => {
+  const {email} = req.body; 
+
+  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
+    if (err) throw err; 
+    if (result.length === 0 return res.json({message: "Email not found!"});
+
+    res.json({message: "reset link sent to email"});
+  });
+});
