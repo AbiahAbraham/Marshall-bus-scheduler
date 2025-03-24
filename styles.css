@@ -43,10 +43,15 @@ h6{
     font-size: large;
 }
 
+h7{
+    text-align: center;
+    flex-direction: column;
+    color: darkslategray;
+    font-size: large;
+}
 /* Navigation menu style */
 nav {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     background-color: #1e4d4e;
     padding: 15px;
