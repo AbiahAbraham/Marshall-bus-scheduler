@@ -154,12 +154,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //handle login to booking/payment 
 document.addEventListener("DOMContentLoaded", function () {
-    const loginBtn = document.getElementById("loginBtn");
+    const loginForm = document.getElementById("loginForm");
 
-    loginBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        window.location.href = "booking.html"; 
-    });
+    if (loginForm){
+        loginForm.addEventListener("click", function (event) {
+            event.preventDefault();
+            window.location.href = "booking.html"; 
+        });
+    }
 });
 
 <script>
