@@ -152,6 +152,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+//handle login to booking/payment 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("loginBtn");
+
+    loginBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        window.location.href = "booking.html"; 
+    });
+});
+
 <script>
     document.getElementById("booking-form").onsubmit = function(event) {
         event.preventDefault(); // Prevents default form submission
