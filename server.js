@@ -2,9 +2,29 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
+const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(cors());
+
+// Connect Database
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '', 
+  database: 'marshall_bus_scheduler',
+}); 
+
+db.connect((err) => {
+  if (err) throw err; 
+  console.log('Database connected');
+}); 
 
 // Route for homepage
 app.get('/', (req, res) => {
@@ -21,6 +41,22 @@ app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
+// User login
+app.post("/api/login', (req, res) => {
+  const {email, password} = req.body;
+
+  db.query("SELECT * FROM users WHERE email = ?', [email], async (err, result) => {
+    if (err) return res.status(500).json({message: 'Server error'});
+
+    if (result.length === 0) {
+      return res.status(401).json({message: 'Invalid email or password'});
+    }
+
+    res.json({success: true, message: "Login successful', user: {id: user.user_id, role: user.role}});
+ });
+});
+
+      
 // Forgot & reset password
 app.post("/api/requestReset", (req, res) => {
   const {email} = req.body; 
