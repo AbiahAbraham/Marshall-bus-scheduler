@@ -153,16 +153,32 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //handle login to booking/payment 
-document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.getElementById("loginForm");
+document.getElementByID("loginForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); 
 
-    if (loginForm){
-        loginForm.addEventListener("click", function (event) {
-            event.preventDefault();
-            window.location.href = "booking.html"; 
+    const email = document.getElementByID("email").value;
+    const password = document.getElementById("password").value; 
+    const errorMessage = document.getElementByID("errorMessage"); 
+
+    try {
+        const response = await fetch("/api/login", {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({email, password}),
         });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Login successful!"); 
+            window.location.href = "booking.html";
+        } else {
+            errorMessage.textContent = "Server error. Please try again.";
+        }
+    } catch (error) {
+        errorMessage.textContent = "Server error. Please try again.";
     }
-});
+}); 
 
 <script>
     document.getElementById("booking-form").onsubmit = function(event) {
