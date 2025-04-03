@@ -68,3 +68,17 @@ app.post("/api/requestReset", (req, res) => {
     res.json({message: "reset link sent to email"});
   });
 });
+
+// Create new account
+app.post("api/createAccount", async (req, res) => {
+  const {email, password} = req.body; 
+
+  const saltRounds = 10; 
+  const hashedPassword = await bcrypt.hash(password, saltRounds); 
+
+  const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+  db.query(sql, [email, hashedPassword], (err, result) => {
+    if (err) return res.status(500).json({message: "Server error"});
+    res.json({success: true, message: "Account created!"});
+  });
+});
