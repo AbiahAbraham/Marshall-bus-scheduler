@@ -153,32 +153,61 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //handle login to booking/payment 
-document.getElementByID("loginForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
 
-    const email = document.getElementByID("email").value;
-    const password = document.getElementById("password").value; 
-    const errorMessage = document.getElementByID("errorMessage"); 
+    if (loginForm) {
+        loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
 
-    try {
-        const response = await fetch("/api/login", {
-            method: "POST", 
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({email, password}),
+            const email = document.getElementById("email").value; 
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({email, password})
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = "booking.html";
+            } else {
+                document.getElementById("errorMessage").innerText = data.message;
+            }
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("Login successful!"); 
-            window.location.href = "booking.html";
-        } else {
-            errorMessage.textContent = "Server error. Please try again.";
-        }
-    } catch (error) {
-        errorMessage.textContent = "Server error. Please try again.";
     }
-}); 
+});
+
+//handle account creation
+document.addEventListener("DOMContentLoaded", function() {
+    const createButton = document.querySelector(".create_account_button");
+
+    if (createButton) {
+        createButton.addEventListener("click", async function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const repeatPassword = document.getElementById("repeat_password").value;
+
+            if (password !== repeatPassword){
+                alert("Passwords do not match.");
+                return;
+            }
+
+            const response = await fetch("/api/createAccount", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({email, password})
+            });
+
+            const data = await response.json();
+            alert(data.message);
+        });
+    }
+});
+
+
 
 <script>
     document.getElementById("booking-form").onsubmit = function(event) {
