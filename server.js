@@ -52,7 +52,14 @@ app.post("/api/login', (req, res) => {
       return res.status(401).json({message: 'Invalid email or password'});
     }
 
-    res.json({success: true, message: "Login successful', user: {id: user.user_id, role: user.role}});
+    const user = result[0];
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({message: 'Invalid email or password'});
+    }
+
+    res.json({success: true, message: "Login successful', user: {id: user.user_id, email: user.email}});
  });
 });
 
