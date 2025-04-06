@@ -3,8 +3,8 @@
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
-    email VARCHAR(100),
-    password VARCHAR(100),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
     phone_number VARCHAR(15),
     role ENUM('admin', 'user') DEFAULT 'user'
 );
