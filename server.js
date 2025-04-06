@@ -70,15 +70,19 @@ app.post("/api/requestReset", (req, res) => {
 });
 
 // Create new account
-app.post("api/createAccount", async (req, res) => {
+app.post("/api/createAccount", async (req, res) => {
   const {email, password} = req.body; 
 
-  const saltRounds = 10; 
-  const hashedPassword = await bcrypt.hash(password, saltRounds); 
+  try { 
+    const saltRounds = 10; 
+    const hashedPassword = await bcrypt.hash(password, saltRounds); 
 
-  const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-  db.query(sql, [email, hashedPassword], (err, result) => {
-    if (err) return res.status(500).json({message: "Server error"});
-    res.json({success: true, message: "Account created!"});
+    const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+    db.query(sql, [email, hashedPassword], (err, result) => {
+      if (err) return res.status(500).json({message: "Server error"});
+      res.json({success: true, message: "Account created!"});
   });
+  } catch (error) {
+    res.status(500).json({message: "Error creating account"});
+  }
 });
