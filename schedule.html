@@ -1,93 +1,106 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>Schedule - Marshall Bus Scheduler</title>
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="script.js"></script>
-    </head>
+  <head>
+    <title>Schedule - Marshall Bus Scheduler</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="script.js"></script>
+  </head>
 
-    <body>
-        <!-- Add HTML markup elements for your web site below -->
-        <h2>Schedule- Marshall Bus Scheduler</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="schedule.html">Schedule</a>
-            <br>
-            <a href="booking.html">Booking</a>
-            <br>
-            <a href="routes.html">Routes</a>
-            <br>
-            <a href="login.html">Login</a>
-        </nav>
-        <div>
-    
+  <body>
+    <!-- Live Clock Display -->
+    <div id="clock" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;"></div>
 
-      <div class="container">
-         <h3>Bus Schedule</h3>
-        <table id="scheduleTable" border="1">
-            <thead>
-                <tr>
-                    <th>Bus</th>
-                    <th>Day</th>
-                    <th>Rides Available</th>
-                    <th>Rides End</th>
-                </tr>
-            </thead>
-            <!--data of table/scheudle-->
-            <tbody>
-                <tr>
-                    <td>Dial-a-Ride</td>
-                    <td>Monday</td>
-                    <td>05:45am</td>
-                    <td>09:00pm</td>
-                </tr>
-                <tr>
-                    <td>Dial-a-Ride</td>
-                    <td>Tuesday</td>
-                    <td>05:45am</td>
-                    <td>09:00pm</td>
-                </tr>
-                <tr>
-                    <td>Dial-a-Ride</td>
-                    <td>Wednesday</td>
-                    <td>05:45am</td>
-                    <td>09:00pm</td>
-                </tr>
-                <tr>
-                    <td>Dial-a-Ride</td>
-                    <td>Thursday</td>
-                    <td>05:45am</td>
-                    <td>09:00pm</td>
-                </tr>
-            </tbody>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Friday</td>
-                <td>05:45am</td>
-                <td>09:00pm</td>
-            </tr>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Saturday</td>
-                <td>08:30am</td>
-                <td>12:30pm</td>
-            </tr>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Sunday</td>
-                <td>08:30am</td>
-                <td>12:30pm</td>
-            </tr>
-        </table>
-        <h4>
-            $2.00 per person when scheudled before 4:30pm.
-            $2.50 per person when scheduled after 4:30pm.
-            $1.00 per each child ages 3-12 years old.
-            Free for children 2 years old and younger.
-        </h4>
+    <h2>Schedule - Marshall Bus Scheduler</h2>
+
+    <nav>
+      <a href="index.html">Home</a><br />
+      <a href="schedule.html">Schedule</a><br />
+      <a href="booking.html">Booking</a><br />
+      <a href="routes.html">Routes</a><br />
+      <a href="login.html">Login</a>
+    </nav>
+
+    <div class="container">
+      <h3>Bus Schedule</h3>
+      <table id="scheduleTable" border="1">
+        <thead>
+          <tr>
+            <th>Bus</th>
+            <th>Day</th>
+            <th>Rides Available</th>
+            <th>Rides End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Monday</td>
+            <td>05:45am</td>
+            <td>09:00pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Tuesday</td>
+            <td>05:45am</td>
+            <td>09:00pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Wednesday</td>
+            <td>05:45am</td>
+            <td>09:00pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Thursday</td>
+            <td>05:45am</td>
+            <td>09:00pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Friday</td>
+            <td>05:45am</td>
+            <td>09:00pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Saturday</td>
+            <td>08:30am</td>
+            <td>12:30pm</td>
+          </tr>
+          <tr>
+            <td>Dial-a-Ride</td>
+            <td>Sunday</td>
+            <td>08:30am</td>
+            <td>12:30pm</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>
+        $2.00 per person when scheduled before 4:30pm.<br />
+        $2.50 per person when scheduled after 4:30pm.<br />
+        $1.00 per each child ages 3-12 years old.<br />
+        Free for children 2 years old and younger.
+      </h4>
     </div>
-    </body>
+
+    <!-- Live Clock Script -->
+    <script>
+      function updateClock() {
+        const clockElement = document.getElementById("clock");
+        const now = new Date();
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        clockElement.textContent = timeString;
+      }
+
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
 </html>
