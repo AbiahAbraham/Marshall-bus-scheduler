@@ -24,10 +24,10 @@
             <a href="login.html">Login</a>
         </nav>
 
-        <form action="">
-            <label for="first">Username:</label>
-            <input type="text" id="first" name="first"
-                placeholder="Enter your Username" required >
+        <form id="loginForm">
+            <label for="first">Email:</label>
+            <input type="text" id="email" name="email"
+                placeholder="Enter your Email" required >
             <br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password"
@@ -37,6 +37,7 @@
                 <button type="submit" id="loginBtn"> Submit </button>
             </div>
         </form>
+        <p id="errorMessage" style="color: darkred;"></p>
         <!-- add remember me -->
         
         <p>Forgot password?
