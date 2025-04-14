@@ -7,6 +7,8 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     phone_number VARCHAR(15),
     role ENUM('admin', 'user') DEFAULT 'user'
+    username VARCHAR(50) UNIQUE,
+
 );
 
 -- Creating the 'routes' table
@@ -15,6 +17,13 @@ CREATE TABLE routes (
     start VARCHAR(100),
     end VARCHAR(100),
     stops VARCHAR(255)
+);
+CREATE TABLE route_stops (
+    stop_id INT PRIMARY KEY AUTO_INCREMENT,
+    route_id INT,
+    stop_name VARCHAR(100),
+    stop_order INT,
+    FOREIGN KEY (route_id) REFERENCES routes(route_id)
 );
 
 -- Creating the 'buses' table
@@ -68,3 +77,7 @@ CREATE TABLE payments (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
 );
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
