@@ -1,58 +1,58 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+
 /* Base styling for body */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #333;
-    background-color: #f8f8f8;
+    background: linear-gradient(to bottom right, #e0f7fa, #f8f8f8);
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Live Clock Styling */
+#clock {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: #ffffffdd;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Centered header and section headers */
-header{
-    text-align: center;
-    color: darkslategray;
-    font-size: larger;
-}
-
-h2{
+h2, h3, h4, h5, h6 {
     text-align: center;
     color: darkslategray;
     font-size: large;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
 }
 
-h3{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
+h2 {
+    font-size: 1.8rem;
 }
 
-h4{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
+h3 {
+    font-size: 1.5rem;
 }
 
-h5{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
+h4 {
+    font-size: 1.1rem;
+    line-height: 1.4;
 }
 
-h6{
-    text-align: center;
-    color: darkslategray;
-    font-size: large;
-}
-
-h7{
-    text-align: center;
-    flex-direction: column;
-    color: darkslategray;
-    font-size: large;
-}
 /* Navigation menu style */
 nav {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
     background-color: #1e4d4e;
     padding: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -62,79 +62,19 @@ nav {
 }
 
 nav a {
-    margin: 0 15px;
+    margin: 0 10px;
     color: white;
     font-weight: bold;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 nav a:hover {
     color: lightgray;
+    text-decoration: underline;
 }
 
 /* Container for main content sections */
-.container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 90%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-/* Table styling */
-table {
-    width: 80%;
-    margin: auto;
-    border: 1px solid #ddd;
-    border-collapse: collapse;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Table headers and rows */
-th, td{
-    padding: 10px;
-    text-align: left;
-    border: 1px solid darkslategray;
-}
-
-th {
-    background-color: #1e4d4e;
-    color: aliceblue;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Form field styling */
-input, select {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-}
-
-/* Button styling */
-button {
-    background-color: #1e4d4e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: navy;
-}
-
-/* Container styling for consistent spacing and layout */
 .container {
     display: flex;
     flex-direction: column;
@@ -147,14 +87,75 @@ button:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.create_account_button {
+/* Table styling */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table headers and rows */
+th, td {
+    padding: 10px;
+    border: 1px solid darkslategray;
+}
+
+td:nth-child(3),
+td:nth-child(4) {
+    text-align: center;
+}
+
+th {
+    background-color: #1e4d4e;
+    color: aliceblue;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Form field styling */
+input, select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Button styling */
+button, .create_account_button {
     background-color: #1e4d4e;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Additional styles here (from the previous CSS update) */
+button:hover, .create_account_button:hover {
+    background-color: navy;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    background-color: #1e4d4e;
+    color: white;
+    font-size: 0.9rem;
+}
