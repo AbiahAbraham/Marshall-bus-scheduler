@@ -45,7 +45,7 @@ app.listen(port, () => {
 app.post("/api/login", (req, res) => {
   const {email, password} = req.body;
 
-  db.query("SELECT * FROM users WHERE email = ?', [email], async (err, result) => {
+  db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
     if (err) return res.status(500).json({message: 'Server error'});
 
     if (result.length === 0) {
