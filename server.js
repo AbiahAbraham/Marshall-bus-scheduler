@@ -59,7 +59,7 @@ app.post("/api/login", (req, res) => {
       return res.status(401).json({message: 'Invalid email or password'});
     }
 
-    res.json({success: true, message: "Login successful', user: {id: user.user_id, email: user.email}});
+    res.json({success: true, message: "Login successful", user: {id: user.user_id, email: user.email}});
  });
 });
 
