@@ -195,14 +195,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            const response = await fetch("/api/createAccount", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({email, password})
-            });
-
-            const data = await response.json();
-            alert(data.message);
+            try {
+                const response = await fetch("/create-account", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json",},
+                    body: JSON.stringify({email, password}),
+                });
+                if (response.ok) {
+                    alert("Account created successfully!");
+                    window.location.href = "login.html";
+                } else {
+                    const errorText = await response.text()
+                    throw new Error(errorText);
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
         });
     }
 });
