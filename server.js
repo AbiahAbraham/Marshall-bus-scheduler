@@ -42,7 +42,7 @@ app.listen(port, () => {
 });
 
 // User login
-app.post("/api/login', (req, res) => {
+app.post("/api/login", (req, res) => {
   const {email, password} = req.body;
 
   db.query("SELECT * FROM users WHERE email = ?', [email], async (err, result) => {
