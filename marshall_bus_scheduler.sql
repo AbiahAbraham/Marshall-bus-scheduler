@@ -8,7 +8,8 @@ CREATE TABLE users (
     phone_number VARCHAR(15),
     role ENUM('admin', 'user') DEFAULT 'user',
     username VARCHAR(50) UNIQUE,
-
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Creating the 'routes' table
@@ -78,6 +79,5 @@ CREATE TABLE payments (
     FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
 );
 
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 
