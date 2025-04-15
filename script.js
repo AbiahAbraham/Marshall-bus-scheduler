@@ -184,8 +184,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //handle account creation
 document.addEventListener("DOMContentLoaded", function() {
-    event.preventDefault();
-
     const createButton = document.querySelector(".create_account_button");
 
     if (createButton) {
