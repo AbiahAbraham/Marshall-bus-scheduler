@@ -70,7 +70,7 @@ app.post("/api/requestReset", (req, res) => {
 
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err) throw err; 
-    if (result.length === 0 return res.json({message: "Email not found!"});
+    if (result.length === 0) return res.json({message: "Email not found!"});
 
     res.json({message: "reset link sent to email"});
   });
