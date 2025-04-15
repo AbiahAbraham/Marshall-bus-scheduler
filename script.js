@@ -156,29 +156,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //handle login to booking/payment 
 document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.getElementById("loginForm");
+    const loginForm = document.querySelector("#loginForm");
 
     if (loginForm) {
+        console.log("Login form found. Setting up event listener."); 
+        
         loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
+            console.log("Login form submitted.");
 
-            const email = document.getElementById("email").value; 
-            const password = document.getElementById("password").value;
+            const email = document.querySelector("#loginForm #email").value; 
+            const password = document.querySelector("#loginForm #password").value;
 
-            const response = await fetch("/api/login", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({email, password})
-            });
-            const data = await response.json();
+            console.log("Email:", email, "Password:", password); 
 
-            if (response.ok) {
-                alert(data.message);
-                window.location.href = "booking.html";
-            } else {
-                document.getElementById("errorMessage").innerText = data.message;
+            try {
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({email, password})
+                });
+
+                const data = await response.json();
+                console.log("Server response:", data);
+
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = "booking.html";
+                } else {
+                    document.getElementById("errorMessage").innerText = data.message;
+                }
+            } catch (error) {
+                console.error("Login error:", error);
+                document.getElementById("errorMessage").innerText = "Something went wrong.";
             }
-        });
+            });
+        } else {
+            console.warn("Login form not found.");
     }
 });
 
