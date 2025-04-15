@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             try {
-                const response = await fetch("/createAccount", {
+                const response = await fetch("/api/createAccount", {
                     method: "POST",
                     headers: {"Content-Type": "application/json",},
                     body: JSON.stringify({email, password}),
