@@ -233,9 +233,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-<script>
-    document.getElementById("booking-form").onsubmit = function(event) {
-        event.preventDefault(); // Prevents default form submission
-        window.location.href = "payment.html"; // Redirect to payment page
-    };
-</script>
+
+document.getElementById("booking-form").onsubmit = function(event) {
+    event.preventDefault(); // Prevents default form submission
+    window.location.href = "payment.html"; // Redirect to payment page
+};
