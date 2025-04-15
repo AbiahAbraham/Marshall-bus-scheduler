@@ -43,6 +43,7 @@ app.post("/api/login", (req, res) => {
 
   db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
     if (err) {return res.status(500).json({message: 'Server error'});
+    }
 
     if (result.length === 0) {
       return res.status(401).json({message: 'Invalid email or password'});
