@@ -1,4 +1,6 @@
 // Add JavaScript code for your web site here and call it from index.html.
+console.log("script.js is loaded");
+
 // Assuming you have a list of schedules
 const schedules = [
     { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
@@ -182,6 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //handle account creation
 document.addEventListener("DOMContentLoaded", function() {
+    event.preventDefault();
+
     const createButton = document.querySelector(".create_account_button");
 
     if (createButton) {
