@@ -1,13 +1,15 @@
 // Add JavaScript code for your web site here and call it from index.html.
-console.log("script.js is loaded");
 
-// Assuming you have a list of schedules
+console.log("script.js is loaded"); // script.js loaded
+
+// Bus schedules
 const schedules = [
     { busNumber: '101', route: 'A to B', departure: '08:00', arrival: '10:00' },
     { busNumber: '102', route: 'B to C', departure: '09:00', arrival: '11:00' },
     // Add more schedules
 ];
 
+// Show schedule in table
 function displaySchedule() {
     const tableBody = document.querySelector("#scheduleTable tbody");
     schedules.forEach(schedule => {
@@ -16,11 +18,10 @@ function displaySchedule() {
         tableBody.appendChild(row);
     });
 }
-
-// Call the function when the page loads
 document.addEventListener("DOMContentLoaded", displaySchedule);
 
 
+// Booking form confirmation
 function handleBooking(event) {
     event.preventDefault();
     
@@ -36,12 +37,13 @@ function handleBooking(event) {
     alert(`Booking confirmed for Dial-a-Ride.`);
 }
 
-// Add event listener for the booking form
 document.addEventListener("DOMContentLoaded", () => {
     const bookingForm = document.querySelector("form");
     bookingForm.addEventListener("submit", handleBooking);
 });
 
+
+// Available routes
 const routes = ["Route A", "Route B", "Route C"];
 
 function displayRoutes() {
@@ -52,9 +54,9 @@ function displayRoutes() {
         routeList.appendChild(listItem);
     });
 }
-
-// Call the function when the page loads
 document.addEventListener("DOMContentLoaded", displayRoutes);
+
+// Payment form 
 function handlePayment(event) {
     event.preventDefault();
 
@@ -72,7 +74,7 @@ function handlePayment(event) {
 }
 
 
-//price calculator for a dial-a-ride
+// Price calculator for a dial-a-ride bookings
 function priceCalculator() {
     console.log("priceCalculator function executed");
 
@@ -103,7 +105,7 @@ function priceCalculator() {
     document.getElementById("amount").value = price.toFixed(2); 
 }
 
-//check if card is expired
+// Check if card is expired
 function expired(){
     const today = new Date();
     const exp = document.getElementById("date");
@@ -154,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-//handle login to booking/payment 
+// Login submission to booking/payment 
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#loginForm");
 
@@ -196,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-//handle account creation
+// Account creation
 document.addEventListener("DOMContentLoaded", function() {
     const createButton = document.querySelector(".create_account_button");
 
