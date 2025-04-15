@@ -78,6 +78,7 @@ app.post("/api/requestReset", (req, res) => {
 });
 
 // Create new account
+// https://kennethscoggins.medium.com/how-to-use-mysql-password-encryption-with-nodejs-express-and-bcrypt-ad9ede661109 
 app.post("/api/createAccount", async (req, res) => {
   const {email, password} = req.body; 
 
