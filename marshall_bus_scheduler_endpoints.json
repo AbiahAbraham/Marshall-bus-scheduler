@@ -56,5 +56,19 @@
       "payment_id": 789,
       "message": "Payment successful!"
     }
+  },
+
+  {
+    "endpoint": "/api/createAccount",
+    "method": "POST",
+    "description": "Creating a user account",
+    "request": {
+      "email": "name@example.com",
+      "password": "password123!"
+    },
+    "response": {
+      "success": true,
+      "message": "Account created!"
+    }
   }
 ]
