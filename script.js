@@ -198,13 +198,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Account creation
+//handle account creation
 document.addEventListener("DOMContentLoaded", function() {
-    const createButton = document.querySelector(".create_account_button");
+    const accountForm = document.getElementById("createAccountForm");
 
-    if (createButton) {
-        createButton.addEventListener("click", async function () {
-            const email = document.getElementById("email").value;
+    if (accountForm) {
+        accountForm.addEventListener("submit", async function (event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById("email").value; 
             const password = document.getElementById("password").value;
             const repeatPassword = document.getElementById("repeat_password").value;
 
@@ -218,12 +220,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     method: "POST",
                     headers: {"Content-Type": "application/json",},
                     body: JSON.stringify({email, password}),
-                });
+                }); 
+
                 if (response.ok) {
                     alert("Account created successfully!");
                     window.location.href = "login.html";
                 } else {
-                    const errorText = await response.text()
+                    const errorText = await response.text();
                     throw new Error(errorText);
                 }
             } catch (error) {
@@ -231,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-});
+}); 
 
 
 
