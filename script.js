@@ -38,8 +38,10 @@ function handleBooking(event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const bookingForm = document.querySelector("form");
-    bookingForm.addEventListener("submit", handleBooking);
+    const bookingForm = document.querySelector("bookingForm");
+    if (bookingForm) {
+        bookingForm.addEventListener("submit", handleBooking);
+    }
 });
 
 
