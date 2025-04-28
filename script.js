@@ -245,3 +245,15 @@ document.getElementById("booking-form").onsubmit = function(event) {
     event.preventDefault(); // Prevents default form submission
     window.location.href = "payment.html"; // Redirect to payment page
 };
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Run clock right away and every second
+updateClock();
+setInterval(updateClock, 1000);
