@@ -1,56 +1,82 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Marshall Bus Scheduler</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script defer>
+        // Function to update the clock every second
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
 
-<html>
-    <head>
-        <title>Login - Marshall Bus Scheduler</title>
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    </head>
+            let ampm = "AM";
+            if (hours >= 12) {
+                ampm = "PM";
+            }
 
-    <!--https://www.geeksforgeeks.org/html-login-form/?ref=lbp-->
-    <body>
-        <!-- Add HTML markup elements for your web site below -->
-        <h2>Login- Marshall Bus Scheduler</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="schedule.html">Schedule</a>
-            <br>
-            <a href="booking.html">Booking</a>
-            <br>
-            <a href="routes.html">Routes</a>
-            <br>
-            <a href="login.html">Login</a>
-        </nav>
+            hours = hours % 12;
+            if (hours === 0) {
+                hours = 12;
+            }
 
-        <form id="loginForm">
-            <label for="first">Email:</label>
-            <input type="text" id="email" name="email"
-                placeholder="Enter your Email" required >
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"
-                placeholder="Enter your Password" required>
-            <br>
-            <div class="wrap">
-                <button type="submit" id="loginBtn"> Submit </button>
-            </div>
-        </form>
-        <p id="errorMessage" style="color: darkred;"></p>
-        <!-- add remember me -->
-        
-        <p>Forgot password?
-            <a href="forgotPassword.html" style="text-decoration: none;">
-                Reset Password
-            </a>
-        </p>
+            hours = String(hours).padStart(2, '0');
 
-        <p>Not registered?
-            <a href="createAccount.html" style="text-decoration: none;">
-                Create an account
-            </a>
-        </p>
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
 
-    </body>
+        document.addEventListener("DOMContentLoaded", function() {
+            updateClock(); // Set immediately
+            setInterval(updateClock, 1000); // Update every second
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Live Clock Display -->
+    <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
+
+    <h2>Login - Marshall Bus Scheduler</h2>
+
+    <nav>
+        <a href="index.html">Home</a><br>
+        <a href="schedule.html">Schedule</a><br>
+        <a href="booking.html">Booking</a><br>
+        <a href="routes.html">Routes</a><br>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Enter your Email" required>
+        <br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+        <br>
+
+        <div class="wrap">
+            <button type="submit" id="loginBtn">Submit</button>
+        </div>
+    </form>
+
+    <p id="errorMessage" style="color: darkred;"></p>
+
+    <p>Forgot password?
+        <a href="forgotPassword.html" style="text-decoration: none;">
+            Reset Password
+        </a>
+    </p>
+
+    <p>Not registered?
+        <a href="createAccount.html" style="text-decoration: none;">
+            Create an account
+        </a>
+    </p>
+
     <script type="text/javascript" src="script.js"></script>
+</body>
 </html>
