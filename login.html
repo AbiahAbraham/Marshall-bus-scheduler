@@ -23,7 +23,6 @@
             hours = 12;
         }
         
-        hours = String(hours).padStart(2, '0');
 
         document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     }
