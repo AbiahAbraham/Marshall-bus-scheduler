@@ -5,42 +5,39 @@
     <title>Login - Marshall Bus Scheduler</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- Start from here -->
-    <script defer> 
-            // Function to update the clock every second, here's the part of the code you'll be adding Saari
-            function updateClock() {
-                const now = new Date();
-                let hours = now.getHours();
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                
-                let ampm = "AM";
-                if (hours >= 12) {
-                    ampm = "PM";
-                }
-                
-                hours = hours % 12;
-                if (hours === 0) {
-                    hours = 12;
-                }
-                
-                hours = String(hours).padStart(2, '0');
+    
+    <script defer>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        let ampm = "AM";
+        if (hours >= 12) {
+            ampm = "PM";
+        }
+        
+        hours = hours % 12;
+        if (hours === 0) {
+            hours = 12;
+        }
+        
+        hours = String(hours).padStart(2, '0');
 
-                // Update the clock element with the new time
-                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-            }
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+    }
 
-            // Update the clock once the DOM is loaded and keep updating every second
-            document.addEventListener("DOMContentLoaded", function() {
-                updateClock(); // Initial call to set the clock immediately
-                setInterval(updateClock, 1000); // Update the clock every second
-            });
-        </script> <!-- end here -->
+    document.addEventListener("DOMContentLoaded", function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+    });
+    </script>
 </head>
 
 <body>
     <!-- Live Clock Display -->
-    <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
+    <div id="clock" style="text-align:center; font-size: 1.5em; margin-bottom: 10px; color: #4CAF50;">00:00:00 AM</div>
 
     <h2>Login - Marshall Bus Scheduler</h2>
 
