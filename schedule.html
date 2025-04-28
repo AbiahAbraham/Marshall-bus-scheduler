@@ -4,14 +4,40 @@
     <title>Schedule - Marshall Bus Scheduler</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="script.js" defer></script>
+    <script defer>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        let ampm = "AM";
+        if (hours >= 12) {
+            ampm = "PM";
+        }
+        
+        hours = hours % 12;
+        if (hours === 0) {
+            hours = 12;
+        }
+        
+        hours = String(hours).padStart(2, '0');
+
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+    });
+    </script>
 </head>
 
 <body>
     <h2>Schedule - Marshall Bus Scheduler</h2>
 
     <!-- Live Clock -->
-    <div id="clock" style="text-align:center; font-size: 1.5em; margin-bottom: 10px;"></div>
+    <div id="clock" style="text-align:center; font-size: 1.5em; margin-bottom: 10px; color: #4CAF50;">00:00:00 AM</div>
 
     <nav>
         <a href="index.html">Home</a><br>
