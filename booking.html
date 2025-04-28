@@ -8,8 +8,8 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="script.js" defer></script>
         
-        <script defer>
-    function updateClock() {
+       <script defer>
+        function updateClock() {
         const now = new Date();
         let hours = now.getHours();
         const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -20,12 +20,12 @@
             ampm = "PM";
         }
         
-        hours = hours % 12;  // Convert to 12-hour format
+        hours = hours % 12;
         if (hours === 0) {
-            hours = 12;  // Handle midnight (00:00 -> 12:00)
+            hours = 12;
         }
         
-        hours = String(hours).padStart(2, '0');  // Ensure two-digit format for hours
+        hours = String(hours).padStart(2, '0');
 
         document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     }
@@ -34,7 +34,7 @@
         updateClock();
         setInterval(updateClock, 1000);
     });
-</script>
+    </script>
 
     </head>
 
