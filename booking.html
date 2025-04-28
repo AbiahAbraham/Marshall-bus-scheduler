@@ -6,36 +6,33 @@
         <title>Booking - Marshall Bus Scheduler</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="script.js" defer></script>
-        
-       <script defer>
-        function updateClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        let ampm = "AM";
-        if (hours >= 12) {
-            ampm = "PM";
-        }
-        
-        hours = hours % 12;
-        if (hours === 0) {
-            hours = 12;
-        }
-        
-        hours = String(hours).padStart(2, '0');
+        <script defer>
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                let ampm = "AM";
+                if (hours >= 12) {
+                    ampm = "PM";
+                }
+                
+                hours = hours % 12;
+                if (hours === 0) {
+                    hours = 12;
+                }
+                
+                hours = String(hours).padStart(2, '0');
 
-        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-    }
+                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+            }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        updateClock();
-        setInterval(updateClock, 1000);
-    });
-    </script>
-
+            document.addEventListener("DOMContentLoaded", function() {
+                updateClock();
+                setInterval(updateClock, 1000);
+            });
+        </script>
     </head>
 
     <body>
@@ -65,20 +62,20 @@
                 <label for="bus-number">Select Bus: </label>
                 <select id="bus-number" name="bus-number">
                     <option value="Dial">Dial-a-Ride</option>
-                    <!-- Add more bus options -->
+                    <!-- Add more bus options if needed -->
                 </select>
                 <br>
 
                 <label for="date">Booking Date: </label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" required>
                 <br>
 
                 <label for="time">Departure Time: </label>
-                <input type="time" id="time" name="time" min="05:45" max="21:00">
+                <input type="time" id="time" name="time" min="05:45" max="21:00" required>
                 <br>
 
                 <label for="adult_passengers">Number of Adults: </label>
-                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1">
+                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1" required>
                 <br>
 
                 <label for="children_passengers">Number of Children (3-12 years old): </label>
@@ -86,7 +83,7 @@
                 <br>
 
                 <label for="p_location">Location of Pickup:</label>
-                <select id="p_location" name="p_location">
+                <select id="p_location" name="p_location" required>
                     <option value="" disabled selected>Choose Location</option>
                     <option value="YMCA">YMCA</option>
                     <option value="CityHall">City Hall</option>
@@ -115,7 +112,7 @@
                 <br>
 
                 <label for="d_location">Location of Dropoff:</label>
-                <select id="d_location" name="d_location">
+                <select id="d_location" name="d_location" required>
                     <option value="" disabled selected>Choose Location</option>
                     <option value="YMCA">YMCA</option>
                     <option value="CityHall">City Hall</option>
