@@ -8,32 +8,33 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="script.js" defer></script>
         <script defer>
-            function updateClock() {
-                const now = new Date();
-                let hours = now.getHours();
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                
-                let ampm = "AM";
-                if (hours >= 12) {
-                    ampm = "PM";
-                }
-                
-                hours = hours % 12;
-                if (hours === 0) {
-                    hours = 12;
-                }
-                
-                hours = String(hours).padStart(2, '0');
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        let ampm = "AM";
+        if (hours >= 12) {
+            ampm = "PM";
+        }
+        
+        hours = hours % 12;  // Convert to 12-hour format
+        if (hours === 0) {
+            hours = 12;  // Handle midnight (00:00 -> 12:00)
+        }
+        
+        hours = String(hours).padStart(2, '0');  // Ensure two-digit format for hours
 
-                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-            }
+        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+    }
 
-            document.addEventListener("DOMContentLoaded", function() {
-                updateClock();
-                setInterval(updateClock, 1000);
-            });
-        </script>
+    document.addEventListener("DOMContentLoaded", function() {
+        updateClock();
+        setInterval(updateClock, 1000);
+    });
+</script>
+
     </head>
 
     <body>
