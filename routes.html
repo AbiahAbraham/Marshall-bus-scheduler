@@ -5,9 +5,39 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="script.js"></script>
+        <script defer>
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                let ampm = "AM";
+                if (hours >= 12) {
+                    ampm = "PM";
+                }
+                
+                hours = hours % 12;
+                if (hours === 0) {
+                    hours = 12;
+                }
+                
+                hours = String(hours).padStart(2, '0');
+
+                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                updateClock();
+                setInterval(updateClock, 1000);
+            });
+        </script>
     </head>
 
     <body>
+        <!-- Live Clock -->
+        <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
+
         <h2>Routes - Marshall Bus Scheduler</h2>
         <nav>
             <a href="index.html">Home</a>
@@ -47,31 +77,12 @@
             <a href="https://www.unitedcapmn.org/programs/transportation/bus-routes-hours/" target="_blank">Official Transit Bus Routes</a>
         </div>
         
-
-        <script>
-            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-              key: "AIzaSyB_HyHrmV4akkXFldbEWcDTi3MHIkU-s5c",
-              v: "beta",
-              // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-              // Add other bootstrap parameters as needed, using camel case.
-            });
-            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-            const map = new
-            google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8,
-            mapId: 'DEMO_MAP_ID'
-            );
-          
-          </script>
-
-
-          <gmp-map
+        <gmp-map
             center="44.4484,-95.7912"
             zoom="13"
             map-id="DEMO_MAP_ID"
             style="height: 400px"
-         >
+        >
             <gmp-advanced-marker
                 position="44.4440,-95.7874"
                 title="YMCA"
@@ -162,17 +173,9 @@
             ></gmp-advanced-marker>
         </gmp-map>
 
-        <!--
-            The `defer` attribute causes the script to execute after the full HTML
-            document has been parsed. For non-blocking uses, avoiding race conditions,
-            and consistent behavior across browsers, consider loading using Promises. See
-            https://developers.google.com/maps/documentation/javascript/load-maps-js-api
-            for more information.
-            -->
         <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_HyHrmV4akkXFldbEWcDTi3MHIkU-s5c&libraries=maps,marker&v=beta"
             defer
         ></script>
     </body>
-
 </html>
