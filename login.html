@@ -5,7 +5,7 @@
     <title>Login - Marshall Bus Scheduler</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    
+
     <script defer>
     function updateClock() {
         const now = new Date();
@@ -22,22 +22,21 @@
         if (hours === 0) {
             hours = 12;
         }
-        
-        hours = String(hours).padStart(2, '0');
 
+        // No padStart() on hours — show as 1:00, 2:00 naturally
         document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        updateClock();
-        setInterval(updateClock, 1000);
+        updateClock(); // run immediately
+        setInterval(updateClock, 1000); // then every second
     });
     </script>
 </head>
 
 <body>
     <!-- Live Clock Display -->
-        <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
+    <div id="clock" style="text-align:center; font-size: 1.5em; margin-bottom: 10px; color: #4CAF50;"></div>
 
     <h2>Login - Marshall Bus Scheduler</h2>
 
