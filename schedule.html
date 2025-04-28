@@ -1,32 +1,28 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <title>Schedule - Marshall Bus Scheduler</title>
-        <link rel="stylesheet" href="styles.css" />
-        <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="script.js"></script>
-    </head>
+<head>
+    <title>Schedule - Marshall Bus Scheduler</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="script.js" defer></script>
+</head>
 
-    <body>
-        <!-- Add HTML markup elements for your web site below -->
-        <h2>Schedule- Marshall Bus Scheduler</h2>
-        <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="schedule.html">Schedule</a>
-            <br>
-            <a href="booking.html">Booking</a>
-            <br>
-            <a href="routes.html">Routes</a>
-            <br>
-            <a href="login.html">Login</a>
-        </nav>
-        <div>
-    
+<body>
+    <h2>Schedule - Marshall Bus Scheduler</h2>
 
-      <div class="container">
-         <h3>Bus Schedule</h3>
+    <!-- Live Clock -->
+    <div id="clock" style="text-align:center; font-size: 1.5em; margin-bottom: 10px;"></div>
+
+    <nav>
+        <a href="index.html">Home</a><br>
+        <a href="schedule.html">Schedule</a><br>
+        <a href="booking.html">Booking</a><br>
+        <a href="routes.html">Routes</a><br>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="container">
+        <h3>Bus Schedule</h3>
         <table id="scheduleTable" border="1">
             <thead>
                 <tr>
@@ -36,7 +32,6 @@
                     <th>Rides End</th>
                 </tr>
             </thead>
-            <!--data of table/scheudle-->
             <tbody>
                 <tr>
                     <td>Dial-a-Ride</td>
@@ -62,36 +57,36 @@
                     <td>05:45am</td>
                     <td>09:00pm</td>
                 </tr>
+                <tr>
+                    <td>Dial-a-Ride</td>
+                    <td>Friday</td>
+                    <td>05:45am</td>
+                    <td>09:00pm</td>
+                </tr>
+                <tr>
+                    <td>Dial-a-Ride</td>
+                    <td>Saturday</td>
+                    <td>08:30am</td>
+                    <td>12:30pm</td>
+                </tr>
+                <tr>
+                    <td>Dial-a-Ride</td>
+                    <td>Sunday</td>
+                    <td>08:30am</td>
+                    <td>12:30pm</td>
+                </tr>
             </tbody>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Friday</td>
-                <td>05:45am</td>
-                <td>09:00pm</td>
-            </tr>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Saturday</td>
-                <td>08:30am</td>
-                <td>12:30pm</td>
-            </tr>
-            <tr>
-                <td>Dial-a-Ride</td>
-                <td>Sunday</td>
-                <td>08:30am</td>
-                <td>12:30pm</td>
-            </tr>
         </table>
+
         <h4>
-            $2.00 per person when scheudled before 4:30pm.
-            $2.50 per person when scheduled after 4:30pm.
-            $1.00 per each child ages 3-12 years old.
+            $2.00 per person when scheduled before 4:30pm. <br>
+            $2.50 per person when scheduled after 4:30pm. <br>
+            $1.00 per each child ages 3-12 years old. <br>
             Free for children 2 years old and younger.
         </h4>
     </div>
-    <!-- https://hillstreetplace.org/wp-content/uploads/2024/08/Picture1.png -->
-    <img src="Bus.png" alt="Marshall Bus"
-    style="display: block; margin: 5px auto; max-width: 70%; height: auto;"> 
-    <p> Img from hillstreetplace.org</p>
-    </body>
+
+    <img src="Bus.png" alt="Marshall Bus" style="display: block; margin: 5px auto; max-width: 70%; height: auto;"> 
+    <p>Img from hillstreetplace.org</p>
+</body>
 </html>
