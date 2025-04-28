@@ -1,38 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Booking - Marshall Bus Scheduler</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <script type="text/javascript" src="script.js" defer></script>
+        <script defer>
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                let ampm = "AM";
+                if (hours >= 12) {
+                    ampm = "PM";
+                }
+                
+                hours = hours % 12;
+                if (hours === 0) {
+                    hours = 12;
+                }
+                
+                hours = String(hours).padStart(2, '0');
+
+                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                updateClock();
+                setInterval(updateClock, 1000);
+            });
+        </script>
     </head>
-    <script defer>
-    function updateClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        let ampm = "AM";
-        if (hours >= 12) {
-            ampm = "PM";
-        }
-        
-        hours = hours % 12;
-        if (hours === 0) {
-            hours = 12;
-        }
-        
-        hours = String(hours).padStart(2, '0');
-
-        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        updateClock();
-        setInterval(updateClock, 1000);
-    });
-    </script>
 
     <body>
         <!-- Live Clock -->
