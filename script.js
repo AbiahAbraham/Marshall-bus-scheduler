@@ -244,6 +244,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.getElementById("booking-form").onsubmit = function(event) {
     event.preventDefault(); // Prevents default form submission
     window.location.href = "payment.html"; // Redirect to payment page
+    
 };
 function updateClock() {
     const now = new Date();
