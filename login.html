@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-    <script defer>
+   <script defer>
     function updateClock() {
         const now = new Date();
         let hours = now.getHours();
@@ -22,14 +22,15 @@
         if (hours === 0) {
             hours = 12;
         }
+        
+        hours = String(hours).padStart(2, '0');
 
-        // No padStart() on hours — show as 1:00, 2:00 naturally
         document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        updateClock(); // run immediately
-        setInterval(updateClock, 1000); // then every second
+        updateClock();
+        setInterval(updateClock, 1000);
     });
     </script>
 </head>
