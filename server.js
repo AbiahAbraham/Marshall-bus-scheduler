@@ -46,8 +46,8 @@ app.post("/api/login", (req, res) => {
 
   db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
     if (err) {
-        console.error(err); //log error on the server
-        return res.status(500).json({message: 'Server error'});
+        console.error(err); //log error on console
+        return res.status(500).json({message: 'Something went wrong'});
     }
 
     if (result.length === 0) {
@@ -76,8 +76,8 @@ app.post("/api/requestReset", (req, res) => {
 
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
     if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({message: "Server error"});
+      console.error("Error:", err); // log error on server
+      return res.status(500).json({message: "Something went wrong"});
     }
     if (result.length === 0) { //user email was not found
       return res.json({message: "If the email exists, a reset link will be sent to the email."});
@@ -89,7 +89,7 @@ app.post("/api/requestReset", (req, res) => {
     db.query("UPDATE users SET resetToken = ?, resetTokenExpiry = ? WHERE email = ?", [token, expiry, email], (err) => {
       if (err) {
         console.error("Database error while updating token: ", err);
-        return res.status(500).json({message: "Failed to update token in the database."});
+        return res.status(500).json({message: "Something went wrong."});
       }
       console.log(`Password reset link: http://localhost:3000/resetPassword.html?token=${token}`);
 
@@ -113,7 +113,7 @@ app.post("/api/requestReset", (req, res) => {
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.error(error); 
-          return res.status(500).json({message: "Failed to send reset email"});
+          return res.status(500).json({message: "Something went wrong"});
         }
         console.log("Resent email sent: " + info.response);
         res.json({message: "If the email exists, a reset link will be sent to the email."});
@@ -129,8 +129,8 @@ app.post("/api/resetPassword", async (req, res) => {
   const sql = "SELECT * FROM users WHERE resetToken = ? AND resetTokenExpiry > ?"; //user with reset token that is not expired
   db.query(sql, [token, Date.now()], async (err, result) => {
     if (err) {
-      console.error("Database error:", err);
-      return res.status(500).json({message: "Server error"});
+      console.error("Error:", err);
+      return res.status(500).json({message: "Something went wrong"});
     }
     if (result.length === 0) {
       return res.status(400).json({message: "Token is invalid or expired"});
@@ -142,8 +142,8 @@ app.post("/api/resetPassword", async (req, res) => {
     const updateSql = "UPDATE users SET password = ?, resetToken = NULL, resetTokenExpiry = NULL WHERE user_id = ?";
     db.query(updateSql, [hashedPassword, user.user_id], (updateErr) => {
       if (updateErr) {
-        console.error("Error updating password:", updateErr);
-        return res.status(500).json({message: "Failed to reset password"});
+        console.error("UpdateErr:", updateErr);
+        return res.status(500).json({message: "Something went wrong"});
       }
       res.json({message: "Password reset successful!"});
     });
@@ -161,7 +161,7 @@ app.post("/api/createAccount", async (req, res) => {
 
     const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
     db.query(sql, [email, hashedPassword], (err, result) => {
-      if (err) {return res.status(500).json({message: "Server error"});
+      if (err) {return res.status(500).json({message: "Something went wrong"});
       }
       res.json({success: true, message: "Account created!"});
   });
