@@ -1,57 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Booking - Marshall Bus Scheduler</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script defer>
-            // Function to update the clock every second
-            function updateClock() {
-                const now = new Date();
-                let hours = now.getHours();
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                
-                let ampm = "AM";
-                if (hours >= 12) {
-                    ampm = "PM";
-                }
-                
-                hours = hours % 12;
-                if (hours === 0) {
-                    hours = 12;
-                }
-                
+        
 
-                // Update the clock element with the new time
-                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-            }
-
-            // Update the clock once the DOM is loaded and keep updating every second
-            document.addEventListener("DOMContentLoaded", function() {
-                updateClock(); // Initial call to set the clock immediately
-                setInterval(updateClock, 1000); // Update the clock every second
-            });
-        </script>
     </head>
 
     <body>
-        <!-- Live Clock Display -->
-        <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
-
-        <h2>Booking - Marshall Bus Scheduler</h2>
+        <h2>Booking- Marshall Bus Scheduler</h2>
         <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="schedule.html">Schedule</a>
-            <br>
-            <a href="booking.html">Booking</a>
-            <br>
-            <a href="routes.html">Routes</a>
-            <br>
-            <a href="login.html">Login</a>
+            <button id="logoutBtn">Logout</button>
+            <!-- Live Clock Display -->
+            <div id="clock"></div>
         </nav>
 
         <div class="container">
@@ -60,32 +23,26 @@
                 <label for="name">Name: </label>
                 <input type="text" id="name" name="name" placeholder="First Last" required pattern="[A-Za-z]+ [A-Za-z]+" title="Please enter your full name (first and last name)">
                 <br>
-
                 <label for="bus-number">Select Bus: </label>
                 <select id="bus-number" name="bus-number">
                     <option value="Dial">Dial-a-Ride</option>
-                    <!-- Add more bus options if needed -->
+                    <!-- Add more bus options-->
                 </select>
                 <br>
-
                 <label for="date">Booking Date: </label>
-                <input type="date" id="date" name="date" required>
+                <input type="date" id="date" name="date">
                 <br>
-
                 <label for="time">Departure Time: </label>
-                <input type="time" id="time" name="time" min="05:45" max="21:00" required>
+                <input type="time" id="time" name="time" min="05:45" max="21:00">
                 <br>
-
                 <label for="adult_passengers">Number of Adults: </label>
-                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1" required>
+                <input type="number" id="adult_passengers" name="adult_passengers" min="1" step="1" ></input>
                 <br>
-
                 <label for="children_passengers">Number of Children (3-12 years old): </label>
-                <input type="number" id="children_passengers" name="children_passengers" min="0" step="1">
+                <input type="number" id="children_passengers" name="children_passengers" min="0" step="1" ></input>
                 <br>
-
-                <label for="p_location">Location of Pickup:</label>
-                <select id="p_location" name="p_location" required>
+                <label for="p_location">Location of Pickup</label>
+                <select id="p_location" name="p_location">
                     <option value="" disabled selected>Choose Location</option>
                     <option value="YMCA">YMCA</option>
                     <option value="CityHall">City Hall</option>
@@ -112,9 +69,8 @@
                     <option value="CountyFair">County Fair</option>
                 </select>
                 <br>
-
-                <label for="d_location">Location of Dropoff:</label>
-                <select id="d_location" name="d_location" required>
+                <label for="d_location">Location of Dropoff</label>
+                <select id="d_location" name="s_location">
                     <option value="" disabled selected>Choose Location</option>
                     <option value="YMCA">YMCA</option>
                     <option value="CityHall">City Hall</option>
@@ -134,17 +90,16 @@
                     <option value="MarshallSqApt">Marshall Square Apartments</option>
                     <option value="SusanDr">Susan Drive</option>
                     <option value="Walmart">Wal-Mart</option>
-                    <option value="Hyvee">Hy-Vee</option>
+                    <option value="Hyvee">Hyvee</option>
                     <option value="DogwoodSt">Dogwood Street</option>
                     <option value="CitySideApt">City Side Apartments</option>
                     <option value="FreedomPark">Freedom Park</option>
                     <option value="CountyFair">County Fair</option>
                 </select>
                 <br>
-
                 <button type="submit">Pay Now!</button>
             </form>
         </div>
-        
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
