@@ -10,6 +10,8 @@ CREATE TABLE users (
     username VARCHAR(50) UNIQUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    resetToken VARCHAR(255),
+    resetTokenExpiry BIGINT
 );
 
 -- Creating the 'routes' table
@@ -78,6 +80,3 @@ CREATE TABLE payments (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
 );
-
-
-
