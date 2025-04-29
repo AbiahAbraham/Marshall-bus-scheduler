@@ -1,176 +1,310 @@
-const express = require('express');
-const path = require('path');
-const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+// Add JavaScript code for your web site here and call it from index.html.
+console.log("script.js is loaded");
 
-const app = express();
-const port = 3000;
+// List of schedules
+const schedules = [
+    // Add more schedules
+];
+
+//schedule
+function displaySchedule() {
+    const tableBody = document.querySelector("#scheduleTable tbody");
+    schedules.forEach(schedule => {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${schedule.busNumber}</td><td>${schedule.route}</td><td>${schedule.departure}</td><td>${schedule.arrival}</td>`;
+        tableBody.appendChild(row);
+    });
+}
+document.addEventListener("DOMContentLoaded", function() {
+    displaySchedule();
+})
+
+//booking
+function handleBooking(event) {
+    event.preventDefault();
+    
+    const cardNumber = document.getElementById("card").value;
+    const cvv = document.getElementById("cvv").value;
+    const time = document.getElementById("time").value;
+
+    if (!cardNumber || !cvv || !time) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    alert(`Booking confirmed for Dial-a-Ride.`);
+}
+
+// bookingForm 
+document.addEventListener("DOMContentLoaded", function() {
+    const bookingForm = document.getElementById("bookingForm");
+    if (bookingForm) {
+        bookingForm.addEventListener("submit", function(e){
+            e.preventDefault();
+            priceCalculator();//call priceCalculator on bookingForm submit button
+
+            const price = parseFloat(document.getElementById("amount").value).toFixed(2); //get calculated price
+
+            localStorage.setItem("bookingPrice", price); //store price in localStorage 
+
+            window.location.href = "payment.html" //redirect to payment.html
+        });
+    } else {
+        console.log("Booking form not found.");
+    }
+});
+
+//routes 
+const routes = ["Route A", "Route B", "Route C"];
+function displayRoutes() {
+    const routeList = document.getElementById("routeList");
+    routes.forEach(route => {
+        const listItem = document.createElement("li");
+        listItem.textContent = route;
+        routeList.appendChild(listItem);
+    });
+}
+document.addEventListener("DOMContentLoaded", displayRoutes);
+
+// Payment form
+document.addEventListener("DOMContentLoaded", function() {
+    const price = localStorage.getItem("bookingPrice");
+
+    if (price) {
+        document.getElementById("amount").value = price;
+    } else {
+        console.log("No price found in localStorage");
+    }
+
+    const paymentForm = document.getElementById("paymentForm");
+    if (paymentForm) {
+        paymentForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const amount = document.getElementById("amount").value;
+            const cardNumber = document.getElementById("card").value;
+            const expiration = document.getElementById("expiration").value;
+            const cvv = document.getElementById("cvv").value;
+
+            if (!amount || !cardNumber || !expiration || !cvv) { //all are required to submit
+                alert("Please fill in all payment details.");
+                return;
+            }
+            if (!expired()) {
+                alert("This card is expired");
+                return;
+            }
+
+            alert("Payment Successful!");
+            window.location.href = "booking.html";
+    });
+}
+});
+
+//check if card is expired
+function expired(){
+    const today = new Date();
+    const expInput = document.getElementById("expiration").value;
+    if (!expInput) {
+        return false;
+    }
+    const [year, month] = expInput.split("-").map(Number);
+    const expDate = new Date(year, month, 0); //last day of the previous month
+    return today <= expDate; 
+}
 
 
-// Set up incoming request helpers & frontend files
-app.use(express.json());
-app.use(express.static(path.join(__dirname))); //HTML, CSS, JavaScript
-app.use(bodyParser.json()); //Parse incoming JSON
-app.use(cors()); //Frontend-backend communication
 
-// Connect MySQL Database
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '#', //my password for the local host removed
-  database: 'marshall_bus_scheduler',
+//price calculator for a dial-a-ride
+function priceCalculator() {
+    console.log("priceCalculator function executed");
+
+    const adult = parseFloat(document.getElementById("adult_passengers").value) || 0;
+    const child = parseFloat(document.getElementById("children_passengers").value) || 0;
+    
+    console.log("Adults", adult, "Children", child);
+
+    let price = 0; 
+
+    const time = document.getElementById("time").value; //time of booking 
+    if (!time) {
+        console.log("No time selected");
+        return; 
+    }
+
+    const [hours, minutes] = time.split(":").map(Number);
+    const totalMinutes = (hours*60) + minutes; //use totalMinutes to get ride of the Date issue for calculating
+    const fourthirtyMinutes = (16*60) + 30; //4:30pm minutes
+
+    //calculate the price
+    if (totalMinutes < fourthirtyMinutes) {
+        price = (adult*2) + child; 
+    } else {
+        price = (adult*2.5) + child; 
+    }
+
+    console.log("Calculated price: ", price);
+
+    localStorage.setItem("bookingPrice", price.toFixed(2));
+
+    // set the price value in payment.html
+    document.getElementById("amount").value = price.toFixed(2); 
+}
+
+
+
+
+//forgot password & reset password 
+document.addEventListener("DOMContentLoaded", function() {
+    //Handle forgot password form submission
+    const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+    if (forgotPasswordForm) {
+        forgotPasswordForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value; 
+
+            const response = await fetch("/api/requestReset", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({email}),
+            });
+
+            const data = await response.json();
+            document.getElementById("message").innerText = data.message;
+        })
+    }
+
+    //Handle reset password form submission
+    const resetPasswordForm = document.getElementById("ResetPasswordForm");
+    if (resetPasswordForm){
+        document.getElementById("token").value = new URLSearchParams(window.location.search).get("token");
+
+        resetPasswordForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const token = document.getElementById("token").value; 
+            const newPassword = document.getElementById("newPassword").value; 
+
+            const response = await fetch("/api/resetPassword", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({token, newPassword}),
+            });
+
+            const data = await response.json(); 
+            document.getElementById("message").innerText = data.message;
+
+            if (response.ok) {
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 2000); //wait 2 seconds before going to login.html
+            }
+        });
+    }
+});
+
+//handle login to booking/payment 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginForm = document.getElementById("loginForm");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value; 
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({email, password})
+                });
+                const data = await response.json();
+    
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = "booking.html";
+                } else {
+                    document.getElementById("errorMessage").innerText = data.message;
+                }
+            } catch (error) {
+                document.getElementById("errorMessage").innerText = "Error occurred: " + error.message;
+            }
+        });
+    }
+});
+//handle logout of booking/payment
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutBtn = document.getElementById("logoutBtn"); 
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", function() {
+            alert("You have been logged out!");
+            window.location.href = "index.html"; //redirect to home page
+        });
+    }
+});
+
+//handle account creation
+document.addEventListener("DOMContentLoaded", function() {
+    const accountForm = document.getElementById("createAccountForm");
+
+    if (accountForm) {
+        accountForm.addEventListener("submit", async function (event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById("email").value; 
+            const password = document.getElementById("password").value;
+            const repeatPassword = document.getElementById("repeat_password").value;
+
+            if (password !== repeatPassword){
+                alert("Passwords do not match.");
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/createAccount", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json",},
+                    body: JSON.stringify({email, password}),
+                }); 
+
+                if (response.ok) {
+                    alert("Account created successfully!");
+                    window.location.href = "login.html";
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                }
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+    }
 }); 
 
-db.connect((err) => {
-  if (err) throw err; 
-  console.log('Database connected');
-}); 
-
-// Route for homepage
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Route for login page
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname,  'public', 'login.html'));
-});
-
-// User login 
-app.post("/api/login", (req, res) => {
-  const {email, password} = req.body;
-
-  db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
-    if (err) {
-        console.error(err); //log error on the server
-        return res.status(500).json({message: 'Server error'});
+// Function to update clock every second
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    let ampm = "AM";
+    if (hours >= 12) {
+        ampm = "PM";
     }
-
-    if (result.length === 0) {
-      return res.status(401).json({message: 'Invalid email or password'});
+    
+    hours = hours % 12;
+    if (hours === 0) {
+        hours = 12;
     }
+    
 
-    const user = result[0];
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    // Update clock element with the new time
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+}
 
-    if (!passwordMatch) {
-      return res.status(401).json({message: 'Invalid email or password'});
-    }
-
-    // login happened successfully
-    res.json({success: true, 
-              message: "Login is successful", 
-              user: {id: user.user_id, email: user.email}});
- });
-});
-
-      
-// Request reset password 
-// https://www.nodemailer.com/ & https://www.youtube.com/watch?v=ssbcgA2n9UY
-app.post("/api/requestReset", (req, res) => {
-  const {email} = req.body; 
-
-  db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
-    if (err) {
-      console.error("Database query error:", err);
-      return res.status(500).json({message: "Server error"});
-    }
-    if (result.length === 0) { //user email was not found
-      return res.json({message: "If the email exists, a reset link will be sent to the email."});
-    }
-
-    const token = crypto.randomBytes(32).toString("hex"); //creates a secure reset token
-    const expiry = Date.now() + 3600000; //token can be used for 1 hour
-
-    db.query("UPDATE users SET resetToken = ?, resetTokenExpiry = ? WHERE email = ?", [token, expiry, email], (err) => {
-      if (err) {
-        console.error("Database error while updating token: ", err);
-        return res.status(500).json({message: "Failed to update token in the database."});
-      }
-      console.log(`Password reset link: http://localhost:3000/resetPassword.html?token=${token}`);
-
-      const resetLink =  `http://localhost:3000/resetPassword.html?token=${token}`;
-      const transporter = nodemailer.createTransport({ //email transporter
-        service: "gmail",
-        auth: {
-          user: "#", //my gmail that will send the reset password email
-          pass: "#", //my App password, removed for security & email will not work now
-        },
-      });
-
-      //creates the email
-      const mailOptions = {
-        from: "#", //my gmail that will send the reset password email
-        to: email,
-        subject: "Reset your password",
-        text: `Click this link to reset your password: ${resetLink}`,
-      };
-      //sends the email 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error(error); 
-          return res.status(500).json({message: "Failed to send reset email"});
-        }
-        console.log("Resent email sent: " + info.response);
-        res.json({message: "If the email exists, a reset link will be sent to the email."});
-      });
-    });
-  });
-});
-
-// Reset password
-app.post("/api/resetPassword", async (req, res) => {
-  const {token, newPassword} = req.body;
-
-  const sql = "SELECT * FROM users WHERE resetToken = ? AND resetTokenExpiry > ?"; //user with reset token that is not expired
-  db.query(sql, [token, Date.now()], async (err, result) => {
-    if (err) {
-      console.error("Database error:", err);
-      return res.status(500).json({message: "Server error"});
-    }
-    if (result.length === 0) {
-      return res.status(400).json({message: "Token is invalid or expired"});
-    }
-
-    const user = result[0];
-    const hashedPassword = await bcrypt.hash(newPassword, 10); //hash the new password
-
-    const updateSql = "UPDATE users SET password = ?, resetToken = NULL, resetTokenExpiry = NULL WHERE user_id = ?";
-    db.query(updateSql, [hashedPassword, user.user_id], (updateErr) => {
-      if (updateErr) {
-        console.error("Error updating password:", updateErr);
-        return res.status(500).json({message: "Failed to reset password"});
-      }
-      res.json({message: "Password reset successful!"});
-    });
-  });
-});
-
-// Create new account
-// https://kennethscoggins.medium.com/how-to-use-mysql-password-encryption-with-nodejs-express-and-bcrypt-ad9ede661109 
-app.post("/api/createAccount", async (req, res) => {
-  const {email, password} = req.body; 
-
-  try { 
-    const saltRounds = 10; 
-    const hashedPassword = await bcrypt.hash(password, saltRounds); 
-
-    const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
-    db.query(sql, [email, hashedPassword], (err, result) => {
-      if (err) {return res.status(500).json({message: "Server error"});
-      }
-      res.json({success: true, message: "Account created!"});
-  });
-  } catch (error) {
-    res.status(500).json({message: "Error creating account"});
-  }
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+// Clock is updated once DOM is loaded & updated every second
+document.addEventListener("DOMContentLoaded", function() {
+    updateClock(); // Initial call to set the clock immediately
+    setInterval(updateClock, 1000); // Update the clock every second
 });
