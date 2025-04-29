@@ -1,79 +1,61 @@
 <!DOCTYPE html>
+
 <html>
-<head>
-    <title>Capstone Project (Abiah, Ogo, and Saari)</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <script defer>
-    function updateClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
+    <head>
+        <title>Capstone project(Abiah, Ogo and Saari)</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+
+    <body>
+        <!-- Add HTML markup elements for your web site below -->
+        <h2>Marshall Bus Scheduler</h2>
+        <nav>
+            <div class="nav-links"> 
+                <a href="index.html">Home</a>
+                <a href="schedule.html">Schedule</a>
+                <a href="routes.html">Routes</a>
+                <a href="login.html">Login</a>
+            </div>
+            <!-- Live Clock Display -->
+            <div id="clock"></div>
+        </nav>
         
-        let ampm = "AM";
-        if (hours >= 12) {
-            ampm = "PM";
-        }
-        
-        hours = hours % 12;
-        if (hours === 0) {
-            hours = 12;
-        }
-        
-
-        document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        updateClock();
-        setInterval(updateClock, 1000);
-    });
-    </script>
-</head>
-
-<body>
-    <h2>Marshall Bus Scheduler</h2>
-
-    <!-- Live Clock -->
-        <div id="clock" style="font-size: 24px; font-weight: bold; margin-bottom: 20px;"></div>
-    <nav>
-        <a href="index.html">Home</a><br>
-        <a href="schedule.html">Schedule</a><br>
-        <a href="booking.html">Booking</a><br>
-        <a href="routes.html">Routes</a><br>
-        <a href="login.html">Login</a>
-    </nav>
-
+    </body>
+    <!-- https://www.facebook.com/photo/?fbid=1134506318392716&set=a.610280517481968 -->
     <img src="Welcome_to_Marshall.png" alt="Welcome to Marshall"
     style="display: block; margin: 10px auto; max-width: 90%; height: auto;"> 
-    <p>Img from Visit Marshall, MN Facebook</p>
-
+    <p> Img from Visit Marshall, MN FaceBook</p>
     <div class="container">
-        <h3>The Marshall Community Transit Bus Routes. Schedules are subject to change due to staffing.</h3>
-
-        <p>
+        <h3> <!-- heading to home page -->
+            The Marshall Community Transit Bus Routes. Schedules are subject to change due to staffing. 
+        </h3>
+        <p1>
             Follow the rules while riding or you can be suspended from using the community bus. 
-        </p>
-
-        <h4>The Red Route</h4>
-        <p>
-            This route is $1 for a ride and is available every day of the week.
-        </p>
-
-        <h5>The Blue Route</h5>
-        <p>
-            This route is $1 for a ride and is available Monday-Friday. 
-        </p>
-
-        <h6>Dial-a-Ride</h6>
-        <p>
-            This route is available every day of the week. <br>
-            $2.00 per person when scheduled before 4:30pm. <br>
-            $2.50 per person when scheduled after 4:30pm. <br>
-            $1.00 per each child ages 3-12 years old. <br>
-            Free for children 2 years old and younger.
-        </p>
+        </p1>
+        <h4><!-- heading to red route -->
+            The Red Route 
+        </h4>
+        <p2>
+            This route is $1 for a ride and is available everyday of the week.
+        </p2>
+        <h5> <!-- heading to blue route -->
+            The Blue Route
+        </h5>
+        <p3>
+            This route is $1 for a ride and is availble Monday-Friday. 
+        </p3>
+        <h6> <!-- heading to dial a ride -->
+            Dial-a-Ride
+        </h6>
+        <p4>
+            This route is available everyday of the week. 
+            $2.00 per person when scheudled before 4:30pm.
+            $2.50 per person when scheduled after 4:30pm.
+            $1.00 per each child ages 3-12 years old.
+            free for children 2 years old and younger.
+        </p4>
     </div>
-</body>
+
 </html>
