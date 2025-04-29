@@ -1,86 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Payment - Marshall Bus Scheduler</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
-        <script type="text/javascript" src="script.js"></script>
-        <script defer>
-            function updateClock() {
-                const now = new Date();
-                let hours = now.getHours();
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                const seconds = String(now.getSeconds()).padStart(2, '0');
-                
-                let ampm = "AM";
-                if (hours >= 12) {
-                    ampm = "PM";
-                }
-                
-                hours = hours % 12;
-                if (hours === 0) {
-                    hours = 12;
-                }
-                
-
-                document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
-            }
-
-            document.addEventListener("DOMContentLoaded", function() {
-                updateClock();
-                setInterval(updateClock, 1000);
-            });
-        </script>
     </head>
 
     <body>
-        <!-- Live Clock -->
-        <div id="clock"></div>
-
-        <h2>Payment - Marshall Bus Scheduler</h2>
+        <!-- Add HTML markup elements for your web site below -->
+        <h2>Payment- Marshall Bus Scheduler</h2>
         <nav>
-            <a href="index.html">Home</a>
-            <br>
-            <a href="schedule.html">Schedule</a>
-            <br>
-            <a href="booking.html">Booking</a>
-            <br>
-            <a href="routes.html">Routes</a>
-            <br>
-            <a href="login.html">Login</a>
+            <button id="logoutBtn">Logout</button>
+            <!-- Live Clock Display -->
+            <div id="clock"></div>
         </nav>
 
         <div class="container">
             <h3>Make a Payment</h3>
-            <form> 
+            <form id="paymentForm"> 
                 <label for="firstName">Card Holder First Name: </label>
-                <input type="text" id="firstName" name="firstName" required pattern="^[A-Za-z]+ $" title="Please provide your first name">
+                <input type="text" id="firstName" name="firstName" required pattern="^[A-Za-z]+$" title="Please provide your first name">
                 <br>
                 <label for="middleInitial">Card Holder Middle Initial: </label>
                 <input type="text" id="middleInitial" name="middleInitial" required pattern="[A-Za-z]" title="Please provide your middle initial">
                 <br>
                 <label for="lastName">Card Holder Last Name: </label>
-                <input type="text" id="lastName" name="lastName" required pattern="^[A-Za-z]+ $" title="Please provide your last name">
+                <input type="text" id="lastName" name="lastName" required pattern="^[A-Za-z]+$" title="Please provide your last name">
                 <br>
                 <label for="amount">Amount: $ </label>
                 <input type="number" id="amount" name="amount" readonly>
-                <!-- add javascript for set payment amount-->
+
                 <br>
                 <label for="card">Card Number: </label>
                 <input type="text" id="card" name="card" placeholder="1234 5678 9012 3456" pattern="\d{16}" maxlength="16" required>
                 <br>
                 <label for="expiration">Expiration Date: </label>
                 <input type="month" id="expiration" name="expiration" required> 
-                <!-- add javascript so it can't be after today's date-->
+
                 <br>
                 <label for="cvv">Card Security Number: </label>
-                <input type="text" id="CVV" name="CVV" placeholder="123" pattern="\d{3,4}" minlength="3" maxlength="4">
+                <input type="text" id="cvv" name="cvv" placeholder="123" pattern="\d{3,4}" minlength="3" maxlength="4">
                 <br>
                 <button type="submit">Submit</button>
             </form>
         </div>
-
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
