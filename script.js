@@ -1,4 +1,4 @@
-// Add JavaScript code for your web site here and call it from index.html.
+//https://medium.com/@satyamv57/20-javascript-tips-and-tricks-you-can-use-right-now-e698880db0f1 
 console.log("script.js is loaded");
 
 // List of schedules
@@ -152,7 +152,7 @@ function priceCalculator() {
 
 
 
-//forgot password & reset password 
+//forgot password & reset password https://medium.com/@kanishksinghmaurya/reset-password-forget-password-implementation-using-node-js-mongodb-nodemailer-jwt-7b2fe9597ca1
 document.addEventListener("DOMContentLoaded", function() {
     //Handle forgot password form submission
     const forgotPasswordForm = document.getElementById("forgotPasswordForm");
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-//handle login to booking/payment 
+//handle login to booking/payment https://codeshack.io/basic-login-system-nodejs-express-mysql/
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("loginForm");
 
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("errorMessage").innerText = data.message;
                 }
             } catch (error) {
-                document.getElementById("errorMessage").innerText = "Error occurred: " + error.message;
+                document.getElementById("errorMessage").innerText = "Error: " + error.message;
             }
         });
     }
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }); 
 
                 if (response.ok) {
-                    alert("Account created successfully!");
+                    alert("Account created!");
                     window.location.href = "login.html";
                 } else {
                     const errorText = await response.text();
@@ -308,3 +308,4 @@ document.addEventListener("DOMContentLoaded", function() {
     updateClock(); // Initial call to set the clock immediately
     setInterval(updateClock, 1000); // Update the clock every second
 });
+//We used AI to help troubleshoot and solve errors in our code. 
